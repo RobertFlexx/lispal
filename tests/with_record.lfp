@@ -1,0 +1,10 @@
+(program WithRecord
+  (type (record Person (name String) (age Integer)))
+  (var (p Person (Person "Ada" 17)))
+  (begin
+    (with p
+      (assert (= name "Ada"))
+      (inc age)
+      (writeln name " is " age))
+    (assert (= (field p age) 18))
+    (writeln "with-ok")))

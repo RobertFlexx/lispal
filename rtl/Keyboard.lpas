@@ -1,0 +1,62 @@
+(unit Keyboard
+
+  (uses System)
+
+  (type
+    (TKeyEvent Integer))
+
+  (procedure InitKeyboard ()
+    (__rtl "kbd_init"))
+
+  (procedure DoneKeyboard ()
+    (__rtl "kbd_done"))
+
+  (function GetKeyEvent () TKeyEvent
+    (__rtl "kbd_getevent"))
+
+  (function PollKeyEvent () TKeyEvent
+    (__rtl "kbd_pollevent"))
+
+  (function PollShiftStateEvent () TKeyEvent
+    (__rtl "kbd_pollshift"))
+
+  (procedure PutKeyEvent ((KeyEvent TKeyEvent))
+    (__rtl "kbd_putevent" KeyEvent))
+
+  (function TranslateKeyEvent ((KeyEvent TKeyEvent)) TKeyEvent
+    (__rtl "kbd_translate" KeyEvent))
+
+  (function TranslateKeyEventUniCode ((KeyEvent TKeyEvent)) TKeyEvent
+    (__rtl "kbd_translateunicode" KeyEvent))
+
+  (function GetKeyEventChar ((KeyEvent TKeyEvent)) Char
+    (__rtl "kbd_char" KeyEvent))
+
+  (function GetKeyEventUniCode ((KeyEvent TKeyEvent)) Integer
+    (__rtl "kbd_unicode" KeyEvent))
+
+  (function GetKeyEventCode ((KeyEvent TKeyEvent)) Integer
+    (__rtl "kbd_code" KeyEvent))
+
+  (function GetKeyEventFlags ((KeyEvent TKeyEvent)) Integer
+    (__rtl "kbd_flags" KeyEvent))
+
+  (function GetKeyEventShiftState ((KeyEvent TKeyEvent)) Integer
+    (__rtl "kbd_shift" KeyEvent))
+
+  (function IsFunctionKey ((KeyEvent TKeyEvent)) Boolean
+    (__rtl "kbd_isfunction" KeyEvent))
+
+  (function KeyPressed () Boolean
+    (__rtl "kbd_keypressed"))
+
+  (function KeyEventToString ((KeyEvent TKeyEvent)) String
+    (__rtl "kbd_eventtostring" KeyEvent))
+
+  (function FunctionKeyName ((KeyCode Integer)) String
+    (__rtl "kbd_functionname" KeyCode))
+
+  (function ShiftStateToString ((KeyEvent TKeyEvent) (UseLeftRight Boolean)) String
+    (__rtl "kbd_shifttostring" KeyEvent UseLeftRight))
+
+)

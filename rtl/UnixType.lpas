@@ -1,0 +1,14 @@
+(unit UnixType
+
+  (uses System)
+
+  (type
+    (TUid Integer)
+    (TGid Integer)
+    (TMode Integer)
+    (TOff Integer)
+    (TPid Integer)
+    (TUnixTime Integer)
+    (UnixType.TSize Integer))
+
+)

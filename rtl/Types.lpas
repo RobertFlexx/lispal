@@ -1,0 +1,56 @@
+(unit Types
+
+  (uses System)
+
+  (type
+    (record TPoint (X Integer) (Y Integer))
+    (record TSmallPoint (X SmallInt) (Y SmallInt))
+    (record TSize (cx Integer) (cy Integer))
+    (record TRect (Left Integer) (Top Integer) (Right Integer) (Bottom Integer))
+    (TIntegerDynArray Array)
+    (TStringDynArray Array)
+    (TBooleanDynArray Array)
+    (TDoubleDynArray Array))
+
+  (function Point ((X Integer) (Y Integer)) TPoint
+    (TPoint X Y))
+
+  (function SmallPoint ((X SmallInt) (Y SmallInt)) TSmallPoint
+    (TSmallPoint X Y))
+
+  (function Size ((cx Integer) (cy Integer)) TSize
+    (TSize cx cy))
+
+  (function Rect ((Left Integer) (Top Integer) (Right Integer) (Bottom Integer)) TRect
+    (TRect Left Top Right Bottom))
+
+
+  (function EqualRect ((R1 TRect) (R2 TRect)) Boolean
+    (and (= (. R1 Left) (. R2 Left))
+         (= (. R1 Top) (. R2 Top))
+         (= (. R1 Right) (. R2 Right))
+         (= (. R1 Bottom) (. R2 Bottom))))
+
+  (function Bounds ((ALeft Integer) (ATop Integer) (AWidth Integer) (AHeight Integer)) TRect
+    (TRect ALeft ATop (+ ALeft AWidth) (+ ATop AHeight)))
+
+  (function PtInRect ((RectValue TRect) (P TPoint)) Boolean
+    (and (>= (. P Y) (. RectValue Top))
+         (< (. P Y) (. RectValue Bottom))
+         (>= (. P X) (. RectValue Left))
+         (< (. P X) (. RectValue Right))))
+
+  (function IsRectEmpty ((RectValue TRect)) Boolean
+    (or (<= (. RectValue Right) (. RectValue Left))
+        (<= (. RectValue Bottom) (. RectValue Top))))
+
+  (function CenterPoint ((RectValue TRect)) TPoint
+    (TPoint
+      (if (< (. RectValue Left) (. RectValue Right))
+          (+ (. RectValue Left) (div (- (. RectValue Right) (. RectValue Left)) 2))
+          (+ (. RectValue Right) (div (- (. RectValue Left) (. RectValue Right)) 2)))
+      (if (< (. RectValue Top) (. RectValue Bottom))
+          (+ (. RectValue Top) (div (- (. RectValue Bottom) (. RectValue Top)) 2))
+          (+ (. RectValue Bottom) (div (- (. RectValue Top) (. RectValue Bottom)) 2)))))
+
+)

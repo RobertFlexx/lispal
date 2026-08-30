@@ -1,0 +1,14 @@
+(unit Classes
+
+  (uses System SysUtils Types)
+
+  (function Bounds ((ALeft Integer) (ATop Integer) (AWidth Integer) (AHeight Integer)) TRect
+    (TRect ALeft ATop (+ ALeft AWidth) (+ ATop AHeight)))
+
+  (function PointsEqual ((P1 Variant) (P2 Variant)) Boolean
+    (and (= (. P1 X) (. P2 X)) (= (. P1 Y) (. P2 Y))))
+
+  (function InvalidPoint ((X Integer) (Y Integer)) Boolean
+    (and (= X -1) (= Y -1)))
+
+)

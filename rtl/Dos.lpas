@@ -1,0 +1,65 @@
+(unit Dos
+
+  (uses System SysUtils DateUtils)
+
+  (function DosVersion () Integer
+    (__rtl "dosversion"))
+
+  (function DiskFree ((Drive Integer)) Integer
+    (SysUtils.DiskFree Drive))
+
+  (function DiskSize ((Drive Integer)) Integer
+    (SysUtils.DiskSize Drive))
+
+  (function GetEnv ((Name String)) String
+    (SysUtils.GetEnvironmentVariable Name))
+
+  (function FSearch ((Path String) (DirList String)) String
+    (SysUtils.FileSearch Path DirList))
+
+  (function FExpand ((Path String)) String
+    (SysUtils.ExpandFileName Path))
+
+  (function GetFAttr ((Path String)) Integer
+    (__rtl "fileattr" Path))
+
+  (function GetFTime ((Path String)) TDateTime
+    (SysUtils.FileAge Path))
+
+  (function FileSplitName ((Path String)) String
+    (SysUtils.ExtractFileName Path))
+
+  (function FileSplitDir ((Path String)) String
+    (SysUtils.ExtractFileDir Path))
+
+  (function FileSplitExt ((Path String)) String
+    (SysUtils.ExtractFileExt Path))
+
+  (function PackTime ((Year Integer) (Month Integer) (Day Integer) (Hour Integer) (Minute Integer) (Second Integer)) TDateTime
+    (DateUtils.EncodeDateTime Year Month Day Hour Minute Second 0))
+
+  (function UnpackYear ((Value TDateTime)) Integer
+    (DateUtils.YearOf Value))
+
+  (function UnpackMonth ((Value TDateTime)) Integer
+    (DateUtils.MonthOf Value))
+
+  (function UnpackDay ((Value TDateTime)) Integer
+    (DateUtils.DayOf Value))
+
+  (function UnpackHour ((Value TDateTime)) Integer
+    (DateUtils.HourOf Value))
+
+  (function UnpackMinute ((Value TDateTime)) Integer
+    (DateUtils.MinuteOf Value))
+
+  (function UnpackSecond ((Value TDateTime)) Integer
+    (DateUtils.SecondOf Value))
+
+  (procedure Exec ((Path String) (CommandLine String))
+    (SysUtils.ExecuteProcess Path CommandLine))
+
+  (procedure Delay ((Milliseconds Integer))
+    (SysUtils.Sleep Milliseconds))
+
+)

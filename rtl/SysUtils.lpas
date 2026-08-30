@@ -1,0 +1,636 @@
+(unit SysUtils
+
+  (uses System)
+
+  (function CompareStr ((S1 String) (S2 String)) Integer
+    (__rtl "comparestr" S1 S2))
+
+  (function CompareText ((S1 String) (S2 String)) Integer
+    (__rtl "comparetext" S1 S2))
+
+  (function AnsiCompareStr ((S1 String) (S2 String)) Integer
+    (__rtl "comparestr" S1 S2))
+
+  (function AnsiCompareText ((S1 String) (S2 String)) Integer
+    (__rtl "comparetext" S1 S2))
+
+  (function AnsiCompareFileName ((S1 String) (S2 String)) Integer
+    (__rtl "comparetext" S1 S2))
+
+  (function UpperCase ((S String)) String
+    (__rtl "uppercase" S))
+
+  (function LowerCase ((S String)) String
+    (__rtl "lowercase" S))
+
+  (function AnsiUpperCase ((S String)) String
+    (__rtl "uppercase" S))
+
+  (function AnsiLowerCase ((S String)) String
+    (__rtl "lowercase" S))
+
+  (function AnsiUpperCaseFileName ((S String)) String
+    (__rtl "uppercase" S))
+
+  (function AnsiLowerCaseFileName ((S String)) String
+    (__rtl "lowercase" S))
+
+  (function Trim ((S String)) String
+    (__rtl "trim" S))
+
+  (function TrimLeft ((S String)) String
+    (__rtl "trimleft" S))
+
+  (function TrimRight ((S String)) String
+    (__rtl "trimright" S))
+
+  (function QuotedStr ((S String)) String
+    (__rtl "quotedstr" S))
+
+  (function AnsiQuotedStr ((S String)) String
+    (__rtl "quotedstr" S))
+
+  (function AnsiDequotedStr ((S String)) String
+    (__rtl "dequotedstr" S))
+
+  (function IntToStr ((Value Integer)) String
+    (__rtl "inttostr" Value))
+
+  (function UIntToStr ((Value Integer)) String
+    (__rtl "uinttostr" Value))
+
+  (function FloatToStr ((Value Real)) String
+    (__rtl "floattostr" Value))
+
+  (function CurrToStr ((Value Real)) String
+    (__rtl "floattostr" Value))
+
+  (function BoolToStr ((Value Boolean)) String
+    (__rtl "booltostr" Value))
+
+  (function StrToInt ((S String)) Integer
+    (__rtl "strtoint" S))
+
+  (function StrToInt64 ((S String)) Integer
+    (__rtl "strtoint" S))
+
+  (function StrToUInt ((S String)) Integer
+    (__rtl "strtoint" S))
+
+  (function StrToUInt64 ((S String)) Integer
+    (__rtl "strtoint" S))
+
+  (function StrToDWord ((S String)) Integer
+    (__rtl "strtoint" S))
+
+  (function StrToQWord ((S String)) Integer
+    (__rtl "strtoint" S))
+
+  (function StrToIntDef ((S String) (Default Integer)) Integer
+    (__rtl "strtointdef" S Default))
+
+  (function StrToInt64Def ((S String) (Default Integer)) Integer
+    (__rtl "strtointdef" S Default))
+
+  (function StrToUIntDef ((S String) (Default Integer)) Integer
+    (__rtl "strtointdef" S Default))
+
+  (function StrToUInt64Def ((S String) (Default Integer)) Integer
+    (__rtl "strtointdef" S Default))
+
+  (function StrToDWordDef ((S String) (Default Integer)) Integer
+    (__rtl "strtointdef" S Default))
+
+  (function StrToQWordDef ((S String) (Default Integer)) Integer
+    (__rtl "strtointdef" S Default))
+
+  (function StrToFloat ((S String)) Real
+    (__rtl "strtofloat" S))
+
+  (function StrToCurr ((S String)) Real
+    (__rtl "strtofloat" S))
+
+  (function StrToFloatDef ((S String) (Default Real)) Real
+    (__rtl "strtofloatdef" S Default))
+
+  (function StrToCurrDef ((S String) (Default Real)) Real
+    (__rtl "strtofloatdef" S Default))
+
+  (function StrToBool ((S String)) Boolean
+    (__rtl "strtobool" S))
+
+  (function FormatFloat ((Fmt String) (Value Real)) String
+    (__rtl "formatfloat" Fmt Value))
+
+  (function FileExists ((FileName String)) Boolean
+    (__rtl "fileexists" FileName))
+
+  (function DirectoryExists ((Directory String)) Boolean
+    (__rtl "directoryexists" Directory))
+
+  (function CreateDir ((Directory String)) Boolean
+    (__rtl "createdir" Directory))
+
+  (function ForceDirectories ((Directory String)) Boolean
+    (__rtl "forcedirectories" Directory))
+
+  (function RemoveDir ((Directory String)) Boolean
+    (__rtl "removedir" Directory))
+
+  (function DeleteFile ((FileName String)) Boolean
+    (__rtl "deletefile" FileName))
+
+  (function RenameFile ((OldName String) (NewName String)) Boolean
+    (__rtl "renamefile" OldName NewName))
+
+  (function FileSize ((FileName String)) Integer
+    (__rtl "filesize" FileName))
+
+  (function GetFileAsString ((FileName String)) String
+    (__rtl "getfileasstring" FileName))
+
+  (function ExpandFileName ((FileName String)) String
+    (__rtl "expandfilename" FileName))
+
+  (function ExtractFilePath ((FileName String)) String
+    (__rtl "extractfilepath" FileName))
+
+  (function ExtractFileDir ((FileName String)) String
+    (__rtl "extractfiledir" FileName))
+
+  (function ExtractFileName ((FileName String)) String
+    (__rtl "extractfilename" FileName))
+
+  (function ExtractFileExt ((FileName String)) String
+    (__rtl "extractfileext" FileName))
+
+  (function ChangeFileExt ((FileName String) (Extension String)) String
+    (__rtl "changefileext" FileName Extension))
+
+  (function IncludeTrailingPathDelimiter ((Path String)) String
+    (__rtl "includetrailingpathdelimiter" Path))
+
+  (function ExcludeTrailingPathDelimiter ((Path String)) String
+    (__rtl "excludetrailingpathdelimiter" Path))
+
+  (function IncludeTrailingBackslash ((Path String)) String
+    (__rtl "includetrailingpathdelimiter" Path))
+
+  (function ExcludeTrailingBackslash ((Path String)) String
+    (__rtl "excludetrailingpathdelimiter" Path))
+
+  (function GetCurrentDir () String
+    (__rtl "getcurrentdir"))
+
+  (function SetCurrentDir ((Directory String)) Boolean
+    (__rtl "setcurrentdir" Directory))
+
+  (function GetTempDir () String
+    (__rtl "gettempdir"))
+
+  (function GetUserDir () String
+    (__rtl "getuserdir"))
+
+  (function GetEnvironmentVariable ((Name String)) String
+    (__rtl "getenvironmentvariable" Name))
+
+  (function GetEnvironmentVariableCount () Integer
+    (__rtl "getenvironmentvariablecount"))
+
+  (function GetEnvironmentString ((Index Integer)) String
+    (__rtl "getenvironmentstring" Index))
+
+  (function FileSearch ((Name String) (DirList String)) String
+    (__rtl "filesearch" Name DirList))
+
+  (function DiskFree ((Drive Integer)) Integer
+    (__rtl "diskfree" Drive))
+
+  (function DiskSize ((Drive Integer)) Integer
+    (__rtl "disksize" Drive))
+
+  (function GetTickCount64 () Integer
+    (__rtl "gettickcount64"))
+
+  (function ExecuteProcess ((Path String) (CommandLine String)) Integer
+    (__rtl "executeprocess" Path CommandLine))
+
+  (function Date () TDateTime
+    (__rtl "date"))
+
+  (function Time () TDateTime
+    (__rtl "time"))
+
+  (function Now () TDateTime
+    (__rtl "nowdatetime"))
+
+  (function CurrentYear () Integer
+    (__rtl "currentyear"))
+
+  (function EncodeDate ((Year Integer) (Month Integer) (Day Integer)) TDateTime
+    (__rtl "encodedate" Year Month Day))
+
+  (function EncodeTime ((Hour Integer) (Minute Integer) (Second Integer) (MilliSecond Integer)) TDateTime
+    (__rtl "encodetime" Hour Minute Second MilliSecond))
+
+  (function DayOfWeek ((Value TDateTime)) Integer
+    (__rtl "dayoftheweek" Value))
+
+  (function IsLeapYear ((Year Integer)) Boolean
+    (__rtl "isleapyear" Year))
+
+  (function IncMonth ((Value TDateTime) (Months Integer)) TDateTime
+    (__rtl "incmonth" Value Months))
+
+  (function SameStr ((S1 String) (S2 String)) Boolean
+    (= (CompareStr S1 S2) 0))
+
+  (function SameText ((S1 String) (S2 String)) Boolean
+    (= (CompareText S1 S2) 0))
+
+  (function AnsiSameStr ((S1 String) (S2 String)) Boolean
+    (SameStr S1 S2))
+
+  (function AnsiSameText ((S1 String) (S2 String)) Boolean
+    (SameText S1 S2))
+
+  (function AnsiPos ((SubStr String) (S String)) Integer
+    (pos SubStr S))
+
+  (function AnsiLastChar ((S String)) String
+    (if (= (length S) 0) "" (copy S (length S) 1)))
+
+  (function AnsiStrLastChar ((S String)) String
+    (AnsiLastChar S))
+
+  (function AnsiStrComp ((S1 String) (S2 String)) Integer
+    (CompareStr S1 S2))
+
+  (function AnsiStrIComp ((S1 String) (S2 String)) Integer
+    (CompareText S1 S2))
+
+  (function AnsiStrLComp ((S1 String) (S2 String) (MaxLen Integer)) Integer
+    (CompareStr (copy S1 1 MaxLen) (copy S2 1 MaxLen)))
+
+  (function AnsiStrLIComp ((S1 String) (S2 String) (MaxLen Integer)) Integer
+    (CompareText (copy S1 1 MaxLen) (copy S2 1 MaxLen)))
+
+  (function AnsiStrLower ((S String)) String
+    (LowerCase S))
+
+  (function AnsiStrUpper ((S String)) String
+    (UpperCase S))
+
+  (function AnsiStrPos ((SubStr String) (S String)) Integer
+    (pos SubStr S))
+
+  (function AnsiStrScan ((S String) (C String)) Integer
+    (pos C S))
+
+  (function AnsiStrRScan ((S String) (C String)) Integer
+    (__rtl "rpos" C S))
+
+  (function StrLen ((S String)) Integer
+    (length S))
+
+  (function StrCharLength ((S String)) Integer
+    (length S))
+
+  (function ByteLength ((S String)) Integer
+    (length S))
+
+  (function ByteToCharIndex ((S String) (Index Integer)) Integer
+    Index)
+
+  (function ByteToCharLen ((S String) (MaxLen Integer)) Integer
+    (min (length S) MaxLen))
+
+  (function CharToByteLen ((S String) (MaxChars Integer)) Integer
+    (min (length S) MaxChars))
+
+  (function StrCopy ((S String)) String
+    S)
+
+  (function StrMove ((S String)) String
+    S)
+
+  (function StrPas ((S String)) String
+    S)
+
+  (function StrPCopy ((S String)) String
+    S)
+
+  (function StrPLCopy ((S String) (MaxLen Integer)) String
+    (copy S 1 MaxLen))
+
+  (function StrLCopy ((S String) (MaxLen Integer)) String
+    (copy S 1 MaxLen))
+
+  (function StrComp ((S1 String) (S2 String)) Integer
+    (CompareStr S1 S2))
+
+  (function StrIComp ((S1 String) (S2 String)) Integer
+    (CompareText S1 S2))
+
+  (function StrLComp ((S1 String) (S2 String) (MaxLen Integer)) Integer
+    (CompareStr (copy S1 1 MaxLen) (copy S2 1 MaxLen)))
+
+  (function StrLIComp ((S1 String) (S2 String) (MaxLen Integer)) Integer
+    (CompareText (copy S1 1 MaxLen) (copy S2 1 MaxLen)))
+
+  (function StrLower ((S String)) String
+    (LowerCase S))
+
+  (function StrUpper ((S String)) String
+    (UpperCase S))
+
+  (function StrPos ((SubStr String) (S String)) Integer
+    (pos SubStr S))
+
+  (function StrScan ((S String) (C String)) Integer
+    (pos C S))
+
+  (function StrRScan ((S String) (C String)) Integer
+    (__rtl "rpos" C S))
+
+  (function StrCat ((S1 String) (S2 String)) String
+    (concat S1 S2))
+
+  (function StrLCat ((S1 String) (S2 String) (MaxLen Integer)) String
+    (copy (concat S1 S2) 1 MaxLen))
+
+  (function StringReplace ((S String) (OldPattern String) (NewPattern String)) String
+    (__rtl "replacestr" S OldPattern NewPattern))
+
+  (function LastDelimiter ((Delimiters String) (S String)) Integer
+    (__rtl "lastdelimiter" Delimiters S))
+
+  (function LeftStr ((S String) (Count Integer)) String
+    (copy S 1 Count))
+
+  (function RightStr ((S String) (Count Integer)) String
+    (__rtl "rightstr" S Count))
+
+  (function IsPathDelimiter ((S String) (Index Integer)) Boolean
+    (= (copy S Index 1) DirectorySeparator))
+
+  (function IsDelimiter ((Delimiters String) (S String) (Index Integer)) Boolean
+    (> (pos (copy S Index 1) Delimiters) 0))
+
+  (function IncludeLeadingPathDelimiter ((Path String)) String
+    (if (= (copy Path 1 1) DirectorySeparator) Path (concat DirectorySeparator Path)))
+
+  (function ExcludeLeadingPathDelimiter ((Path String)) String
+    (if (= (copy Path 1 1) DirectorySeparator) (copy Path 2 (- (length Path) 1)) Path))
+
+  (function ExtractFileDrive ((FileName String)) String
+    (if (= (copy FileName 2 1) ":") (copy FileName 1 2) ""))
+
+  (function ExpandUNCFileName ((FileName String)) String
+    (ExpandFileName FileName))
+
+  (function ExtractShortPathName ((FileName String)) String
+    FileName)
+
+  (function SameFileName ((S1 String) (S2 String)) Boolean
+    (SameText (ExpandFileName S1) (ExpandFileName S2)))
+
+  (function FloatToDateTime ((Value Real)) TDateTime
+    Value)
+
+  (function FloatToCurr ((Value Real)) Real
+    Value)
+
+  (function ComposeDateTime ((DateValue TDateTime) (TimeValue TDateTime)) TDateTime
+    (+ (trunc DateValue) (TimeOf TimeValue)))
+
+  (function ReplaceDate ((DateTime TDateTime) (NewDate TDateTime)) TDateTime
+    (+ (trunc NewDate) (TimeOf DateTime)))
+
+  (function ReplaceTime ((DateTime TDateTime) (NewTime TDateTime)) TDateTime
+    (+ (trunc DateTime) (TimeOf NewTime)))
+
+  (function IncAMonth ((Year Integer) (Month Integer) (Day Integer) (NumberOfMonths Integer)) TDateTime
+    (IncMonth (EncodeDate Year Month Day) NumberOfMonths))
+
+  (function IfThen ((Condition Boolean) (TrueValue Variant) (FalseValue Variant)) Variant
+    (if Condition TrueValue FalseValue))
+
+  (function StrToBoolDef ((S String) (Default Boolean)) Boolean
+    (cond ((SameText S "true") true) ((SameText S "false") false) (else Default)))
+
+  (function DateTimeToStr ((Value TDateTime)) String
+    (__rtl "datetimetostr" Value))
+
+  (function DateToStr ((Value TDateTime)) String
+    (__rtl "datetostr" Value))
+
+  (function TimeToStr ((Value TDateTime)) String
+    (__rtl "timetostr" Value))
+
+  (function StrToDateTime ((S String)) TDateTime
+    (__rtl "strtodatetime" S))
+
+  (function StrToDate ((S String)) TDateTime
+    (__rtl "strtodate" S))
+
+  (function StrToTime ((S String)) TDateTime
+    (__rtl "strtotime" S))
+
+  (function StrToDateTimeDef ((S String) (Default TDateTime)) TDateTime
+    (__rtl "strtodatetimedef" S Default))
+
+  (function StrToDateDef ((S String) (Default TDateTime)) TDateTime
+    (__rtl "strtodatedef" S Default))
+
+  (function StrToTimeDef ((S String) (Default TDateTime)) TDateTime
+    (__rtl "strtotimedef" S Default))
+
+  (function DateTimeToString ((FormatString String) (Value TDateTime)) String
+    (__rtl "formatdatetime" FormatString Value))
+
+  (function FormatDateTime ((FormatString String) (Value TDateTime)) String
+    (__rtl "formatdatetime" FormatString Value))
+
+  (function FloatToStrF ((Value Real) (FormatString String)) String
+    (FormatFloat FormatString Value))
+
+  (function CurrToStrF ((Value Real) (FormatString String)) String
+    (FormatFloat FormatString Value))
+
+  (function FormatCurr ((FormatString String) (Value Real)) String
+    (FormatFloat FormatString Value))
+
+  (function IntToHex ((Value Integer) (Digits Integer)) String
+    (__rtl "inttohex" Value Digits))
+
+  (function IsValidIdent ((Ident String)) Boolean
+    (__rtl "isvalidident" Ident))
+
+  (function ConcatPaths ((Paths Array)) String
+    (__rtl "concatpaths" Paths))
+
+  (function DoDirSeparators ((Path String)) String
+    (__rtl "dodirseparators" Path))
+
+  (function SetDirSeparators ((Path String)) String
+    (__rtl "dodirseparators" Path))
+
+  (function GetAppConfigDir ((Global Boolean)) String
+    (__rtl "getappconfigdir" Global))
+
+  (function GetAppConfigFile ((Global Boolean)) String
+    (__rtl "getappconfigfile" Global))
+
+  (function GetCompiledArchitecture () String
+    (__rtl "compiledarch"))
+
+  (function GetCompiledPlatform () String
+    (__rtl "compiledplatform"))
+
+  (function ApplicationName () String
+    (__rtl "applicationname"))
+
+  (function GetModuleName () String
+    (__rtl "modulename"))
+
+  (function GetTempFileName ((Dir String) (Prefix String)) String
+    (__rtl "tempfilename" Dir Prefix))
+
+  (function GetTickCount () Integer
+    (mod (GetTickCount64) 4294967296))
+
+  (procedure Sleep ((Milliseconds Integer))
+    (__rtl "sleep" Milliseconds))
+
+  (procedure Beep ()
+    (write "\a"))
+
+  (procedure Abort ()
+    (halt 255))
+
+  (function AdjustLineBreaks ((S String)) String
+    (str S))
+
+  (function NewStr ((S String)) String
+    (str S))
+
+  (function AssignStr ((S String)) String
+    (str S))
+
+  (function StringOf ((S String)) String
+    (str S))
+
+  (function LoadStr ((S String)) String
+    (str S))
+
+  (function SafeFormat ((S String)) String
+    (str S))
+
+  (function ExpandFileNameCase ((S String)) String
+    (ExpandFileName S))
+
+  (function ChangeFilePath ((FileName String) (Path String)) String
+    (concat (IncludeTrailingPathDelimiter Path) (ExtractFileName FileName)))
+
+  (function ExtractRelativePath ((BaseName String) (DestName String)) String
+    (__rtl "extractrelativepath" BaseName DestName))
+
+  (function ExeSearch ((Name String) (Path String)) String
+    (FileSearch Name Path))
+
+  (function FileAge ((FileName String)) TDateTime
+    (__rtl "fileage" FileName))
+
+  (function FileAgeUTC ((FileName String)) TDateTime
+    (__rtl "fileage" FileName))
+
+  (function FileDateToDateTime ((Value TDateTime)) TDateTime
+    Value)
+
+  (function FileDateToUniversal ((Value TDateTime)) TDateTime
+    (__rtl "localtouniversal" Value))
+
+  (function LocalTimeToUniversal ((Value TDateTime)) TDateTime
+    (__rtl "localtouniversal" Value))
+
+  (function NowUTC () TDateTime
+    (__rtl "nowutc"))
+
+  (function GetUniversalTime () TDateTime
+    (__rtl "nowutc"))
+
+  (function TryStrToInt ((S String)) Boolean
+    (__rtl "trystrtoint" S))
+
+  (function TryStrToInt64 ((S String)) Boolean
+    (__rtl "trystrtoint" S))
+
+  (function TryStrToUInt ((S String)) Boolean
+    (__rtl "trystrtoint" S))
+
+  (function TryStrToUInt64 ((S String)) Boolean
+    (__rtl "trystrtoint" S))
+
+  (function TryStrToDWord ((S String)) Boolean
+    (__rtl "trystrtoint" S))
+
+  (function TryStrToQWord ((S String)) Boolean
+    (__rtl "trystrtoint" S))
+
+  (function TryStrToFloat ((S String)) Boolean
+    (__rtl "trystrtofloat" S))
+
+  (function TryStrToCurr ((S String)) Boolean
+    (__rtl "trystrtofloat" S))
+
+  (function TryStrToBool ((S String)) Boolean
+    (__rtl "trystrtobool" S))
+
+  (function TryStrToDate ((S String)) Boolean
+    (__rtl "trystrtodate" S))
+
+  (function TryStrToDateTime ((S String)) Boolean
+    (__rtl "trystrtodatetime" S))
+
+  (function TryStrToTime ((S String)) Boolean
+    (__rtl "trystrtotime" S))
+
+  (function WideLowerCase ((S String)) String
+    (LowerCase S))
+
+  (function UnicodeLowerCase ((S String)) String
+    (LowerCase S))
+
+  (function WideUpperCase ((S String)) String
+    (UpperCase S))
+
+  (function UnicodeUpperCase ((S String)) String
+    (UpperCase S))
+
+  (function WideCompareStr ((A String) (B String)) Integer
+    (CompareStr A B))
+
+  (function UnicodeCompareStr ((A String) (B String)) Integer
+    (CompareStr A B))
+
+  (function WideCompareText ((A String) (B String)) Integer
+    (CompareText A B))
+
+  (function UnicodeCompareText ((A String) (B String)) Integer
+    (CompareText A B))
+
+  (function WideSameStr ((A String) (B String)) Boolean
+    (SameStr A B))
+
+  (function UnicodeSameStr ((A String) (B String)) Boolean
+    (SameStr A B))
+
+  (function WideSameText ((A String) (B String)) Boolean
+    (SameText A B))
+
+  (function UnicodeSameText ((A String) (B String)) Boolean
+    (SameText A B))
+
+
+)

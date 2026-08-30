@@ -1,0 +1,11 @@
+(program FixedArray
+  (var
+    (a (array 1 3 Integer)))
+  (begin
+    (assert (= (low a) 1))
+    (assert (= (high a) 3))
+    (set! (index a 1) 10)
+    (set! (index a 2) 20)
+    (set! (index a 3) 12)
+    (assert (= (+ (index a 1) (index a 2) (index a 3)) 42))
+    (writeln "fixed-array-ok")))

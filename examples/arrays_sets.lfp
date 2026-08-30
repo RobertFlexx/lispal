@@ -1,0 +1,16 @@
+(program Collections
+  (var
+    (xs Array (array 10 20 30))
+    (seen Set (set 1 2 3)))
+
+  (begin
+    (append xs 40)
+    (set! (index xs 1) 99)
+    (writeln "xs = " xs)
+    (writeln "xs[1] = " (index xs 1))
+    (writeln "length = " (length xs))
+
+    (include seen 4)
+    (exclude seen 2)
+    (writeln "set = " seen)
+    (writeln "3 in set? " (in 3 seen))))

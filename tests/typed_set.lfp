@@ -1,0 +1,9 @@
+(program TypedSet
+  (type (enum Color Red Green Blue))
+  (var (colors (set-of Color)))
+  (begin
+    (include colors Red)
+    (include colors Blue)
+    (assert (in Red colors))
+    (assert (= (length colors) 2))
+    (writeln "typed-set-ok")))

@@ -1,0 +1,26 @@
+(program RtlGetOptsLong
+  (uses GetOpts)
+
+  (var
+    (C Char #\null)
+    (LongIndex Pointer (new 0))
+    (Options Array
+      (array
+        (TOption "verbose" No_Argument nil #\v)
+        (TOption "output" Required_Argument nil #\o)
+        (TOption "" No_Argument nil #\null))))
+
+  (begin
+    (set! C (GetLongOpts "" Options LongIndex))
+    (assert (= C #\v))
+    (assert (= (deref LongIndex) 1))
+
+    (set! C (GetLongOpts "" Options LongIndex))
+    (assert (= C #\o))
+    (assert (= OptArg "name"))
+    (assert (= GetOpts.OptArg "name"))
+    (assert (= (deref LongIndex) 2))
+
+    (set! C (GetLongOpts "" Options LongIndex))
+    (assert (= C EndOfOptions))
+    (writeln "rtl-getopts-long-ok")))

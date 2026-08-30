@@ -1,0 +1,11 @@
+(unit Printer
+
+  (uses System)
+
+  (procedure InitPrinter ((PrinterName String))
+    (__rtl "printer_init" PrinterName))
+
+  (function IsLstAvailable () Boolean
+    (__rtl "printer_available"))
+
+)

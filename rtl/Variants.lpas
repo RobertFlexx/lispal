@@ -1,0 +1,32 @@
+(unit Variants
+
+  (uses System SysUtils)
+
+  (function VarIsNull ((V Variant)) Boolean
+    (= (typeof V) "nil"))
+
+  (function VarIsEmpty ((V Variant)) Boolean
+    (= (typeof V) "nil"))
+
+  (function VarIsNumeric ((V Variant)) Boolean
+    (or (= (typeof V) "integer") (= (typeof V) "real")))
+
+  (function VarIsStr ((V Variant)) Boolean
+    (= (typeof V) "string"))
+
+  (function VarIsBool ((V Variant)) Boolean
+    (= (typeof V) "boolean"))
+
+  (function VarToStr ((V Variant)) String
+    (str V))
+
+  (function VarToStrDef ((V Variant) (Default String)) String
+    (if (VarIsNull V) Default (str V)))
+
+  (function VarSameValue ((A Variant) (B Variant)) Boolean
+    (= A B))
+
+  (function VarCompareValue ((A Variant) (B Variant)) Integer
+    (cond ((= A B) 0) ((< A B) -1) (else 1)))
+
+)

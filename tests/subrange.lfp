@@ -1,0 +1,7 @@
+(program Subrange
+  (type
+    (Digit (subrange 0 9)))
+  (var (d Digit 7))
+  (begin
+    (assert (= d 7))
+    (writeln "subrange-ok")))

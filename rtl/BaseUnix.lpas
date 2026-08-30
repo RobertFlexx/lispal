@@ -1,0 +1,98 @@
+(unit BaseUnix
+
+  (uses System ctypes UnixType)
+
+  (function FpAccess ((Path String) (Mode Integer)) Integer
+    (__rtl "unix_access" Path Mode))
+
+  (function FpAlarm ((Seconds Integer)) Integer
+    (__rtl "unix_alarm" Seconds))
+
+  (function FpChdir ((Path String)) Integer
+    (__rtl "unix_chdir" Path))
+
+  (function FpChmod ((Path String) (Mode Integer)) Integer
+    (__rtl "unix_chmod" Path Mode))
+
+  (function FpChown ((Path String) (Owner Integer) (Group Integer)) Integer
+    (__rtl "unix_chown" Path Owner Group))
+
+  (function FpClose ((FD Integer)) Integer
+    (__rtl "unix_close" FD))
+
+  (function FpDup ((FD Integer)) Integer
+    (__rtl "unix_dup" FD))
+
+  (function FpDup2 ((OldFD Integer) (NewFD Integer)) Integer
+    (__rtl "unix_dup2" OldFD NewFD))
+
+  (function FpFtruncate ((FD Integer) (Length Integer)) Integer
+    (__rtl "unix_ftruncate" FD Length))
+
+  (function FpGetcwd () String
+    (__rtl "unix_getcwd"))
+
+  (function FpGetegid () Integer
+    (__rtl "unix_getegid"))
+
+  (function FpGeteuid () Integer
+    (__rtl "unix_geteuid"))
+
+  (function FpGetgid () Integer
+    (__rtl "unix_getgid"))
+
+  (function FpGetpgrp () Integer
+    (__rtl "unix_getpgrp"))
+
+  (function FpGetpid () Integer
+    (__rtl "unix_getpid"))
+
+  (function FpGetppid () Integer
+    (__rtl "unix_getppid"))
+
+  (function FpGetuid () Integer
+    (__rtl "unix_getuid"))
+
+  (function fpgeterrno () Integer
+    (__rtl "unix_geterrno"))
+
+  (procedure fpseterrno ((ErrNo Integer))
+    (__rtl "unix_seterrno" ErrNo))
+
+  (function FpKill ((Pid Integer) (Sig Integer)) Integer
+    (__rtl "unix_kill" Pid Sig))
+
+  (function FpLink ((OldPath String) (NewPath String)) Integer
+    (__rtl "unix_link" OldPath NewPath))
+
+  (function FpLseek ((FD Integer) (Offset Integer) (Whence Integer)) Integer
+    (__rtl "unix_lseek" FD Offset Whence))
+
+  (function FpMkdir ((Path String) (Mode Integer)) Integer
+    (__rtl "unix_mkdir" Path Mode))
+
+  (function FpMkfifo ((Path String) (Mode Integer)) Integer
+    (__rtl "unix_mkfifo" Path Mode))
+
+  (function fpNice ((Increment Integer)) Integer
+    (__rtl "unix_nice" Increment))
+
+  (function FpOpen ((Path String) (Flags Integer) (Mode Integer)) Integer
+    (__rtl "unix_open" Path Flags Mode))
+
+  (function FpRename ((OldPath String) (NewPath String)) Integer
+    (__rtl "unix_rename" OldPath NewPath))
+
+  (function FpRmdir ((Path String)) Integer
+    (__rtl "unix_rmdir" Path))
+
+  (function fpSymlink ((Target String) (LinkPath String)) Integer
+    (__rtl "unix_symlink" Target LinkPath))
+
+  (function FpUmask ((Mask Integer)) Integer
+    (__rtl "unix_umask" Mask))
+
+  (function FpUnlink ((Path String)) Integer
+    (__rtl "unix_unlink" Path))
+
+)

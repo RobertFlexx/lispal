@@ -1,0 +1,11 @@
+(unit Errors
+
+  (uses System SysUtils)
+
+  (function StrError ((Code Integer)) String
+    (__rtl "strerror" Code))
+
+  (function GetLastOSError () Integer
+    (__rtl "lastoserror"))
+
+)

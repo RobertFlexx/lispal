@@ -1,0 +1,2 @@
+#!/usr/bin/env lfp
+(writeln "shebang works :P")

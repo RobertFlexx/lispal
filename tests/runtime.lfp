@@ -1,0 +1,65 @@
+(program Runtime
+  (type
+    (enum Mode Cold Warm Hot)
+    (record Point (x Integer) (y Integer)))
+
+  (var
+    (hits Integer 0)
+    (values Array (array 2 4 6))
+    (origin Point (Point 20 22))
+    (modes Set (set Cold Hot)))
+
+  (function factorial ((n Integer)) Integer
+    (if (<= n 1)
+        1
+        (* n (factorial (- n 1)))))
+
+  (function sign ((n Integer)) Integer
+    (if (< n 0) (return -1))
+    (if (> n 0) (return 1))
+    0)
+
+  (begin
+    (assert (= (factorial 6) 720))
+    (assert (= (sign -3) -1))
+    (assert (= (sign 0) 0))
+    (assert (= (sign 3) 1))
+
+    (assert (and true (= 1 1) (= 2 2)))
+    (assert (or false false true))
+    (and false (set! hits 1))
+    (or true (set! hits 2))
+    (assert (= hits 0) "boolean operators did not short-circuit")
+
+    (append values 8)
+    (set! (index values 0) 10)
+    (inc (index values 0) 2)
+    (assert (= (length values) 4))
+    (assert (= (index values 0) 12))
+    (assert (= (index values 3) 8))
+    (assert (= (index "pascal" 1) #\p))
+
+    (inc (field origin x) 2)
+    (assert (= (+ (field origin x) (field origin y)) 44))
+    (assert (in Cold modes))
+    (include modes Warm)
+    (exclude modes Cold)
+    (assert (= modes (set Warm Hot)))
+
+    (var (pointer Pointer (new 40)))
+    (inc (deref pointer) 2)
+    (assert (= (deref pointer) 42))
+    (dispose pointer)
+
+    (var (count Integer 0))
+    (label again)
+    (inc count)
+    (if (< count 3) (goto again))
+    (assert (= count 3))
+
+    (assert (= (copy "lispal" 1 4) "lisp"))
+    (assert (= (pos "pal" "lispal") 4))
+    (assert (= (uppercase "ok") "OK"))
+    (assert (= (max 9007199254740993 9007199254740992) 9007199254740993))
+    (assert (= (min 9007199254740993 9007199254740992) 9007199254740992))
+    (writeln "runtime-ok")))

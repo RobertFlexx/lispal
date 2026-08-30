@@ -1,0 +1,71 @@
+(unit Crt
+
+  (uses System SysUtils)
+
+  (procedure ClrScr ()
+    (__rtl "clrscr"))
+
+  (procedure ClrEol ()
+    (__rtl "clreol"))
+
+  (procedure CursorBig ()
+    (__rtl "crt_cursorbig"))
+
+  (procedure CursorOff ()
+    (__rtl "crt_cursoroff"))
+
+  (procedure CursorOn ()
+    (__rtl "crt_cursoron"))
+
+  (procedure DelLine ()
+    (__rtl "crt_delline"))
+
+  (procedure InsLine ()
+    (__rtl "crt_insline"))
+
+  (procedure GotoXY ((X Integer) (Y Integer))
+    (__rtl "gotoxy" X Y))
+
+  (procedure TextColor ((Color Integer))
+    (__rtl "textcolor" Color))
+
+  (procedure TextBackground ((Color Integer))
+    (__rtl "textbackground" Color))
+
+  (procedure NormVideo ()
+    (__rtl "normvideo"))
+
+  (procedure LowVideo ()
+    (__rtl "lowvideo"))
+
+  (procedure HighVideo ()
+    (__rtl "highvideo"))
+
+  (procedure TextMode ((Mode Integer))
+    (__rtl "crt_textmode" Mode))
+
+  (procedure Window ((X1 Integer) (Y1 Integer) (X2 Integer) (Y2 Integer))
+    (__rtl "crt_window" X1 Y1 X2 Y2))
+
+  (procedure Delay ((Milliseconds Integer))
+    (SysUtils.Sleep Milliseconds))
+
+  (procedure Sound ((Frequency Integer))
+    (__rtl "beepfreq" Frequency))
+
+  (procedure NoSound ()
+    (__rtl "nosound"))
+
+  (function WhereX () Integer
+    (__rtl "wherex"))
+
+  (function WhereY () Integer
+    (__rtl "wherey"))
+
+  (function KeyPressed () Boolean
+    (__rtl "keypressed"))
+
+  (function ReadKey () String
+    (__rtl "readkey"))
+
+)

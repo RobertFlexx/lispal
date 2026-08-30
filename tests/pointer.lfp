@@ -1,0 +1,8 @@
+(program Ptr
+  (var (p Pointer (new 7)))
+  (begin
+    (assert (= (deref p) 7))
+    (set! (deref p) 9)
+    (assert (= (deref p) 9))
+    (dispose p)
+    (writeln "pointer-ok")))

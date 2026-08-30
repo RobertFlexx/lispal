@@ -1,0 +1,33 @@
+(unit GetOpts
+
+  (uses System)
+
+  (const
+    (No_Argument Integer 0)
+    (Required_Argument Integer 1)
+    (Optional_Argument Integer 2)
+    (EndOfOptions Char (chr 255))
+    (OptSpecifier (set-of Char) (set #\-)))
+
+  (type
+    (enum Orderings require_order permute return_in_order)
+    (record TOption
+      (Name String)
+      (Has_arg Integer)
+      (Flag Pointer)
+      (Value Char))
+    (POption Pointer))
+
+  (var
+    (OptArg String "")
+    (OptInd LongInt 0)
+    (OptErr Boolean true)
+    (OptOpt Char #\?))
+
+  (function GetOpt ((ShortOpts String)) Char
+    (__rtl "getopts_getopt" ShortOpts))
+
+  (function GetLongOpts ((ShortOpts String) (LongOpts Array) (LongInd Pointer)) Char
+    (__rtl "getopts_getlongopts" ShortOpts LongOpts LongInd))
+
+)

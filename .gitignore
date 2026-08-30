@@ -1,0 +1,9 @@
+/bin/
+/build/
+/lfp-*.tar.gz
+*.o
+*.ppu
+*.a
+*.so
+*.dll
+*.dylib

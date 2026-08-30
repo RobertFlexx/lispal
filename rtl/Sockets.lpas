@@ -1,0 +1,57 @@
+(unit Sockets
+
+  (uses System ctypes)
+
+  (type
+    (TSocket Integer)
+    (TInAddr Integer))
+
+  (function fpSocket ((Domain Integer) (SockType Integer) (Protocol Integer)) Integer
+    (__rtl "socket_create" Domain SockType Protocol))
+
+  (function fpListen ((S Integer) (Backlog Integer)) Integer
+    (__rtl "socket_listen" S Backlog))
+
+  (function fpShutdown ((S Integer) (How Integer)) Integer
+    (__rtl "socket_shutdown" S How))
+
+  (function CloseSocket ((S Integer)) Integer
+    (__rtl "socket_close" S))
+
+  (function htonl ((Host Integer)) Integer
+    (__rtl "socket_htonl" Host))
+
+  (function htons ((Host Integer)) Integer
+    (__rtl "socket_htons" Host))
+
+  (function NToHl ((Net Integer)) Integer
+    (__rtl "socket_ntohl" Net))
+
+  (function NToHs ((Net Integer)) Integer
+    (__rtl "socket_ntohs" Net))
+
+  (function HostToNet ((Host Integer)) Integer
+    (__rtl "socket_htonl" Host))
+
+  (function NetToHost ((Net Integer)) Integer
+    (__rtl "socket_ntohl" Net))
+
+  (function ShortHostToNet ((Host Integer)) Integer
+    (__rtl "socket_htons" Host))
+
+  (function ShortNetToHost ((Net Integer)) Integer
+    (__rtl "socket_ntohs" Net))
+
+  (function StrToHostAddr ((IP String)) TInAddr
+    (__rtl "socket_strtohost" IP))
+
+  (function StrToNetAddr ((IP String)) TInAddr
+    (__rtl "socket_strtonet" IP))
+
+  (function HostAddrToStr ((Addr TInAddr)) String
+    (__rtl "socket_hosttostr" Addr))
+
+  (function NetAddrToStr ((Addr TInAddr)) String
+    (__rtl "socket_nettostr" Addr))
+
+)

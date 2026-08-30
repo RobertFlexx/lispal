@@ -1,0 +1,21 @@
+(program Control
+  (var
+    (n Integer 0)
+    (sum Integer 0))
+
+  (begin
+    (while (< n 5)
+      (inc n)
+      (if (= n 3) (continue))
+      (inc sum n))
+    (assert (= sum 12) "while/continue failed")
+
+    (repeat
+      (dec n)
+      (until (= n 2)))
+    (assert (= n 2) "repeat failed")
+
+    (case n
+      (1 (assert false "bad case"))
+      ((2 3) (writeln "case-ok"))
+      (else (assert false "case missed")))))

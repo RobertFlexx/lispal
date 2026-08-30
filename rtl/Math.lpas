@@ -1,0 +1,256 @@
+(unit Math
+
+  (uses System)
+
+  (type
+    (Float Real)
+    (TValueRelationship (subrange -1 1))
+    (TValueSign (subrange -1 1))
+    (TRoundToRange (subrange -37 37))
+    (enum TPaymentTime ptEndOfPeriod ptStartOfPeriod))
+
+  (const
+    (LessThanValue TValueRelationship -1)
+    (EqualsValue TValueRelationship 0)
+    (GreaterThanValue TValueRelationship 1)
+    (NegativeValue TValueSign -1)
+    (ZeroValue TValueSign 0)
+    (PositiveValue TValueSign 1)
+    (Infinity Real (__rtl "infinity"))
+    (NegInfinity Real (__rtl "neginfinity"))
+    (NaN Real (__rtl "nan"))
+    (MaxFloat Real 1.7976931348623157e308)
+    (MinFloat Real 2.2250738585072014e-308))
+
+  (function ArcCos ((X Real)) Real
+    (__rtl "arccos" X))
+
+  (function ArcCosH ((X Real)) Real
+    (__rtl "arccosh" X))
+
+  (function ArCosH ((X Real)) Real
+    (ArcCosH X))
+
+  (function ArcSin ((X Real)) Real
+    (__rtl "arcsin" X))
+
+  (function ArcSinH ((X Real)) Real
+    (__rtl "arcsinh" X))
+
+  (function ArcTan2 ((Y Real) (X Real)) Real
+    (__rtl "arctan2" Y X))
+
+  (function ArcTanH ((X Real)) Real
+    (__rtl "arctanh" X))
+
+  (function ArSinH ((X Real)) Real
+    (ArcSinH X))
+
+  (function ArTanH ((X Real)) Real
+    (ArcTanH X))
+
+  (function Ceil ((X Real)) Integer
+    (__rtl "ceil" X))
+
+  (function Ceil64 ((X Real)) Integer
+    (__rtl "ceil64" X))
+
+  (procedure ClearExceptions ()
+    (__rtl "math_clearexceptions"))
+
+  (function CompareValue ((A Real) (B Real)) TValueRelationship
+    (__rtl "math_comparevalue" A B))
+
+  (function Cosecant ((X Real)) Real
+    (__rtl "math_cosecant" X))
+
+  (function CosH ((X Real)) Real
+    (__rtl "cosh" X))
+
+  (function Cot ((X Real)) Real
+    (__rtl "math_cotan" X))
+
+  (function Cotan ((X Real)) Real
+    (__rtl "math_cotan" X))
+
+  (function Csc ((X Real)) Real
+    (__rtl "math_cosecant" X))
+
+  (function CycleToRad ((X Real)) Real
+    (__rtl "math_cycletorad" X))
+
+  (function DegNormalize ((X Real)) Real
+    (__rtl "math_degnormalize" X))
+
+  (function DegToGrad ((X Real)) Real
+    (__rtl "math_degtograd" X))
+
+  (function DegToRad ((X Real)) Real
+    (__rtl "degtorad" X))
+
+  (function EnsureRange ((Value Real) (MinValueArg Real) (MaxValueArg Real)) Real
+    (min MaxValueArg (max MinValueArg Value)))
+
+  (function Floor ((X Real)) Integer
+    (__rtl "floor" X))
+
+  (function Floor64 ((X Real)) Integer
+    (__rtl "floor64" X))
+
+  (function FMod ((X Real) (Y Real)) Real
+    (__rtl "math_fmod" X Y))
+
+  (function FutureValue ((ARate Real) (NPeriods Integer) (APayment Real) (APresentValue Real) (APaymentTime TPaymentTime)) Real
+    (__rtl "math_futurevalue" ARate NPeriods APayment APresentValue APaymentTime))
+
+  (function GradToDeg ((X Real)) Real
+    (__rtl "math_gradtodeg" X))
+
+  (function GradToRad ((X Real)) Real
+    (__rtl "math_gradtorad" X))
+
+  (function Hypot ((X Real) (Y Real)) Real
+    (__rtl "hypot" X Y))
+
+  (function IfThen ((Condition Boolean) (TrueValue Variant) (FalseValue Variant)) Variant
+    (if Condition TrueValue FalseValue))
+
+  (function InRange ((Value Real) (MinValueArg Real) (MaxValueArg Real)) Boolean
+    (and (>= Value MinValueArg) (<= Value MaxValueArg)))
+
+  (function InterestRate ((NPeriods Integer) (APayment Real) (APresentValue Real) (AFutureValue Real) (APaymentTime TPaymentTime)) Real
+    (__rtl "math_interestrate" NPeriods APayment APresentValue AFutureValue APaymentTime))
+
+  (function IntPower ((Base Real) (Exponent Integer)) Real
+    (__rtl "math_intpower" Base Exponent))
+
+  (function IsInfinite ((X Real)) Boolean
+    (__rtl "isinfinite" X))
+
+  (function IsNan ((X Real)) Boolean
+    (__rtl "isnan" X))
+
+  (function IsZero ((X Real)) Boolean
+    (__rtl "math_iszero" X))
+
+  (function Ldexp ((X Real) (P Integer)) Real
+    (__rtl "math_ldexp" X P))
+
+  (function LnXP1 ((X Real)) Real
+    (__rtl "math_lnxp1" X))
+
+  (function Log10 ((X Real)) Real
+    (__rtl "log10" X))
+
+  (function Log2 ((X Real)) Real
+    (__rtl "log2" X))
+
+  (function LogN ((Base Real) (X Real)) Real
+    (__rtl "logn" Base X))
+
+  (function Max ((A Real) (B Real)) Real
+    (if (> A B) A B))
+
+  (function MaxIntValue ((Data Array)) Integer
+    (__rtl "math_maxintvalue" Data))
+
+  (function MaxValue ((Data Array)) Real
+    (__rtl "maxvalue" Data))
+
+  (function Mean ((Data Array)) Real
+    (__rtl "mean" Data))
+
+  (function Min ((A Real) (B Real)) Real
+    (if (< A B) A B))
+
+  (function MinIntValue ((Data Array)) Integer
+    (__rtl "math_minintvalue" Data))
+
+  (function MinValue ((Data Array)) Real
+    (__rtl "minvalue" Data))
+
+  (function Norm ((Data Array)) Real
+    (sqrt (SumOfSquares Data)))
+
+  (function NumberOfPeriods ((ARate Real) (APayment Real) (APresentValue Real) (AFutureValue Real) (APaymentTime TPaymentTime)) Real
+    (__rtl "math_numberofperiods" ARate APayment APresentValue AFutureValue APaymentTime))
+
+  (function Payment ((ARate Real) (NPeriods Integer) (APresentValue Real) (AFutureValue Real) (APaymentTime TPaymentTime)) Real
+    (__rtl "math_payment" ARate NPeriods APresentValue AFutureValue APaymentTime))
+
+  (function PopnStdDev ((Data Array)) Real
+    (__rtl "popnstddev" Data))
+
+  (function PopnVariance ((Data Array)) Real
+    (__rtl "popnvariance" Data))
+
+  (function Power ((Base Real) (Exponent Real)) Real
+    (__rtl "power" Base Exponent))
+
+  (function PresentValue ((ARate Real) (NPeriods Integer) (APayment Real) (AFutureValue Real) (APaymentTime TPaymentTime)) Real
+    (__rtl "math_presentvalue" ARate NPeriods APayment AFutureValue APaymentTime))
+
+  (function RadToCycle ((X Real)) Real
+    (__rtl "math_radtocycle" X))
+
+  (function RadToDeg ((X Real)) Real
+    (__rtl "radtodeg" X))
+
+  (function RadToGrad ((X Real)) Real
+    (__rtl "math_radtograd" X))
+
+  (function RandG ((MeanArg Real) (StdDevArg Real)) Real
+    (__rtl "math_randg" MeanArg StdDevArg))
+
+  (function RandomFrom ((Data Array)) Variant
+    (__rtl "math_randomfrom" Data))
+
+  (function RandomRange ((AFrom Integer) (ATo Integer)) Integer
+    (__rtl "math_randomrange" AFrom ATo))
+
+  (function RoundTo ((Value Real) (Digits TRoundToRange)) Real
+    (__rtl "math_roundto" Value Digits))
+
+  (function SameValue ((A Real) (B Real) (Epsilon Real)) Boolean
+    (__rtl "samevalue" A B Epsilon))
+
+  (function Sec ((X Real)) Real
+    (__rtl "math_secant" X))
+
+  (function Secant ((X Real)) Real
+    (__rtl "math_secant" X))
+
+  (function Sign ((X Real)) TValueSign
+    (__rtl "math_sign" X))
+
+  (function SimpleRoundTo ((Value Real) (Digits TRoundToRange)) Real
+    (__rtl "math_simpleroundto" Value Digits))
+
+  (function SinH ((X Real)) Real
+    (__rtl "sinh" X))
+
+  (function StdDev ((Data Array)) Real
+    (__rtl "stddev" Data))
+
+  (function Sum ((Data Array)) Real
+    (__rtl "sum" Data))
+
+  (function SumInt ((Data Array)) Integer
+    (__rtl "math_sumint" Data))
+
+  (function SumOfSquares ((Data Array)) Real
+    (__rtl "sumsq" Data))
+
+  (function Tan ((X Real)) Real
+    (__rtl "math_tan" X))
+
+  (function TanH ((X Real)) Real
+    (__rtl "tanh" X))
+
+  (function TotalVariance ((Data Array)) Real
+    (__rtl "totalvariance" Data))
+
+  (function Variance ((Data Array)) Real
+    (__rtl "variance" Data))
+
+)

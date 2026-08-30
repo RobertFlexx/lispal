@@ -1,0 +1,22 @@
+(unit WinDirs
+
+  (uses System)
+
+  (const
+    (CSIDL_COMMON_DESKTOPDIRECTORY Integer 25)
+    (CSIDL_COMMON_DOCUMENTS Integer 46)
+    (CSIDL_PROGRAM_FILES_COMMON Integer 43))
+
+  (function GetWindowsSpecialDir ((ID Integer) (CreateIfNotExists Boolean)) String
+    (__rtl "windirs_special" ID CreateIfNotExists))
+
+  (function GetWindowsSpecialDirUnicode ((ID Integer) (CreateIfNotExists Boolean)) String
+    (__rtl "windirs_special_unicode" ID CreateIfNotExists))
+
+  (function GetWindowsSystemDirectory () String
+    (__rtl "windirs_system"))
+
+  (function GetWindowsSystemDirectoryUnicode () String
+    (__rtl "windirs_system_unicode"))
+
+)

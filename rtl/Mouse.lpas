@@ -1,0 +1,37 @@
+(unit Mouse
+
+  (uses System)
+
+  (const
+    (MouseLeftButton Integer 1)
+    (MouseRightButton Integer 2)
+    (MouseMiddleButton Integer 4))
+
+  (procedure InitMouse ()
+    (__rtl "mouse_init"))
+
+  (procedure DoneMouse ()
+    (__rtl "mouse_done"))
+
+  (function DetectMouse () Integer
+    (__rtl "mouse_detect"))
+
+  (procedure ShowMouse ()
+    (__rtl "mouse_show"))
+
+  (procedure HideMouse ()
+    (__rtl "mouse_hide"))
+
+  (function GetMouseX () Integer
+    (__rtl "mouse_x"))
+
+  (function GetMouseY () Integer
+    (__rtl "mouse_y"))
+
+  (function GetMouseButtons () Integer
+    (__rtl "mouse_buttons"))
+
+  (procedure SetMouseXY ((X Integer) (Y Integer))
+    (__rtl "mouse_setxy" X Y))
+
+)

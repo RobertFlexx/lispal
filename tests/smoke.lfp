@@ -1,0 +1,27 @@
+(program Smoke
+  (type
+    (record Pair (left Integer) (right Integer))
+    (enum State Idle Busy Done))
+
+  (function add ((a Integer) (b Integer)) Integer
+    (+ a b))
+
+  (var
+    (x Integer 0)
+    (p Pair (Pair 20 22))
+    (s Set (set 1 2 3)))
+
+  (begin
+    (assert (= (add 20 22) 42) "function call failed")
+    (for (i 1 to 10) (inc x i))
+    (assert (= x 55) "for loop failed")
+    (assert (= (+ (field p left) (field p right)) 42) "record failed")
+    (assert (in 2 s) "set failed")
+    (assert (= (+ (set 1 2) (set 2 3)) (set 1 2 3)) "set union failed")
+    (assert (= (* (set 1 2) (set 2 3)) (set 2)) "set intersection failed")
+    (assert (= (- (set 1 2 3) (set 2)) (set 1 3)) "set difference failed")
+    (assert (<= (set 1 2) (set 1 2 3)) "set subset failed")
+    (assert (= (succ Idle) Busy) "enum succ failed")
+    (set! (field p right) 23)
+    (assert (= (field p right) 23) "field assignment failed")
+    (writeln "smoke-ok")))

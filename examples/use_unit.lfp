@@ -1,0 +1,5 @@
+(program UnitDemo
+  (uses "units/mathstuff")
+  (begin
+    (writeln "triple 14 = " (triple 14))
+    (writeln "clamp 200 0 100 = " (clamp 200 0 100))))

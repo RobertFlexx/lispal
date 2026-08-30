@@ -1,0 +1,20 @@
+(unit ctypes
+
+  (uses System)
+
+  (type
+    (cint Integer)
+    (cuint Integer)
+    (clong Integer)
+    (culong Integer)
+    (clonglong Integer)
+    (culonglong Integer)
+    (cshort Integer)
+    (cushort Integer)
+    (cchar Integer)
+    (cuchar Integer)
+    (csize_t Integer)
+    (cfloat Real)
+    (cdouble Real))
+
+)

@@ -1,0 +1,43 @@
+(program PascalTour
+  (const
+    (Limit Integer 5))
+
+  (type
+    (Index Integer)
+    (enum Mood Calm Happy Silly)
+    (record Vec2
+      (x Real)
+      (y Real)))
+
+  (var
+    (sum Integer 0)
+    (m Mood Silly)
+    (v Vec2 (Vec2 3 4)))
+
+  (function square ((x Integer)) Integer
+    (* x x))
+
+  (procedure show-mood ((x Mood))
+    (case x
+      (Calm  (writeln "calm"))
+      (Happy (writeln "happy"))
+      (Silly (writeln "silly"))
+      (else  (writeln "???"))))
+
+  (begin
+    (for (i 1 to Limit)
+      (set! sum (+ sum (square i))))
+
+    (writeln "sum of squares = " sum)
+    (writeln "v = " v)
+    (show-mood m)
+
+    (var (n Integer 3))
+    (while (> n 0)
+      (writeln "countdown " n)
+      (dec n))
+
+    (repeat
+      (inc n)
+      (until (= n 2)))
+    (writeln "repeat ended at " n)))

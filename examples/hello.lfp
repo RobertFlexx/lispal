@@ -1,0 +1,5 @@
+#!/usr/bin/env lfp
+(program Hello
+  (begin
+    (writeln "Hello from Lispal!")
+    (writeln "2 + 2 = " (+ 2 2))))

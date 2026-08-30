@@ -1,0 +1,101 @@
+(unit Character
+
+  (uses System)
+
+  (type
+    (enum TUnicodeCategory
+      ucUppercaseLetter
+      ucLowercaseLetter
+      ucTitlecaseLetter
+      ucModifierLetter
+      ucOtherLetter
+      ucNonSpacingMark
+      ucCombiningMark
+      ucEnclosingMark
+      ucDecimalNumber
+      ucLetterNumber
+      ucOtherNumber
+      ucConnectPunctuation
+      ucDashPunctuation
+      ucOpenPunctuation
+      ucClosePunctuation
+      ucInitialPunctuation
+      ucFinalPunctuation
+      ucOtherPunctuation
+      ucMathSymbol
+      ucCurrencySymbol
+      ucModifierSymbol
+      ucOtherSymbol
+      ucSpaceSeparator
+      ucLineSeparator
+      ucParagraphSeparator
+      ucControl
+      ucFormat
+      ucSurrogate
+      ucPrivateUse
+      ucUnassigned))
+
+  (function ConvertFromUtf32 ((AChar Integer)) String
+    (__rtl "char_fromutf32" AChar))
+
+  (function ConvertToUtf32 ((AString String)) Integer
+    (__rtl "char_toutf32" AString))
+
+  (function GetNumericValue ((AChar String)) Real
+    (__rtl "char_numericvalue" AChar))
+
+  (function GetUnicodeCategory ((AChar String)) TUnicodeCategory
+    (__rtl "char_category" AChar))
+
+  (function IsControl ((AChar String)) Boolean
+    (__rtl "char_iscontrol" AChar))
+
+  (function IsDigit ((AChar String)) Boolean
+    (__rtl "char_isdigit" AChar))
+
+  (function IsHighSurrogate ((AChar String)) Boolean
+    (__rtl "char_ishighsurrogate" AChar))
+
+  (function IsLetter ((AChar String)) Boolean
+    (__rtl "char_isletter" AChar))
+
+  (function IsLetterOrDigit ((AChar String)) Boolean
+    (__rtl "char_isletterordigit" AChar))
+
+  (function IsLower ((AChar String)) Boolean
+    (__rtl "char_islower" AChar))
+
+  (function IsLowSurrogate ((AChar String)) Boolean
+    (__rtl "char_islowsurrogate" AChar))
+
+  (function IsNumber ((AChar String)) Boolean
+    (__rtl "char_isnumber" AChar))
+
+  (function IsPunctuation ((AChar String)) Boolean
+    (__rtl "char_ispunctuation" AChar))
+
+  (function IsSeparator ((AChar String)) Boolean
+    (__rtl "char_isseparator" AChar))
+
+  (function IsSurrogate ((AChar String)) Boolean
+    (__rtl "char_issurrogate" AChar))
+
+  (function IsSurrogatePair ((AHighSurrogate String) (ALowSurrogate String)) Boolean
+    (__rtl "char_issurrogatepair" AHighSurrogate ALowSurrogate))
+
+  (function IsSymbol ((AChar String)) Boolean
+    (__rtl "char_issymbol" AChar))
+
+  (function IsUpper ((AChar String)) Boolean
+    (__rtl "char_isupper" AChar))
+
+  (function IsWhiteSpace ((AChar String)) Boolean
+    (__rtl "char_iswhitespace" AChar))
+
+  (function ToLower ((AChar String)) String
+    (__rtl "char_tolower" AChar))
+
+  (function ToUpper ((AChar String)) String
+    (__rtl "char_toupper" AChar))
+
+)

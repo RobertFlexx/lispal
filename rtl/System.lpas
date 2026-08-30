@@ -1,0 +1,80 @@
+(unit System
+
+  (type
+    (ShortInt Integer)
+    (SmallInt Integer)
+    (LongInt Integer)
+    (Int64 Integer)
+    (Byte Integer)
+    (Word Integer)
+    (LongWord Integer)
+    (Cardinal Integer)
+    (QWord Integer)
+    (NativeInt Integer)
+    (NativeUInt Integer)
+    (SizeInt Integer)
+    (SizeUInt Integer)
+    (PtrInt Integer)
+    (PtrUInt Integer)
+    (TDateTime Real)
+    (TDate Real)
+    (TTime Real)
+    (TFileName String)
+    (TPathStr String)
+    (TDirStr String)
+    (TNameStr String)
+    (TExtStr String)
+    (AnsiString String)
+    (UnicodeString String)
+    (WideString String)
+    (ShortString String)
+    (RawByteString String)
+    (TStringArray Array)
+    (TBytes Array))
+
+  (const
+    (MaxInt Integer 9223372036854775807)
+    (MinInt Integer -9223372036854775808)
+    (MaxLongInt Integer 2147483647)
+    (MaxSmallInt Integer 32767)
+    (MaxShortInt Integer 127)
+    (MaxByte Integer 255)
+    (MaxWord Integer 65535)
+    (MaxLongWord Integer 4294967295)
+    (DirectorySeparator String "/")
+    (PathSeparator String ":")
+    (DriveSeparator String ":")
+    (ExtensionSeparator String ".")
+    (LineEnding String "\n"))
+
+  (function Odd ((X Integer)) Boolean
+    (<> (mod X 2) 0))
+
+  (function Even ((X Integer)) Boolean
+    (= (mod X 2) 0))
+
+  (function Swap ((X Integer)) Integer
+    (+ (* (mod X 256) 256) (div X 256)))
+
+  (function Hi ((X Integer)) Integer
+    (div X 256))
+
+  (function Lo ((X Integer)) Integer
+    (mod X 256))
+
+  (function Assigned ((X Variant)) Boolean
+    (not (= (typeof X) "nil")))
+
+  (function Frac ((X Real)) Real
+    (__rtl "frac" X))
+
+  (function Int ((X Real)) Real
+    (__rtl "intpart" X))
+
+  (function Pi () Real
+    pi)
+
+  (function Default () Variant
+    nil)
+
+)

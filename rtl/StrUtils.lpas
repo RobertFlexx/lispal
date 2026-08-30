@@ -1,0 +1,290 @@
+(unit StrUtils
+
+  (uses System SysUtils)
+
+  (function AnsiContainsText ((AText String) (ASubText String)) Boolean
+    (__rtl "containstext" AText ASubText))
+
+  (function ContainsText ((AText String) (ASubText String)) Boolean
+    (__rtl "containstext" AText ASubText))
+
+  (function AnsiContainsStr ((AText String) (ASubText String)) Boolean
+    (__rtl "containsstr" AText ASubText))
+
+  (function ContainsStr ((AText String) (ASubText String)) Boolean
+    (__rtl "containsstr" AText ASubText))
+
+  (function AnsiStartsText ((ASubText String) (AText String)) Boolean
+    (__rtl "startstext" ASubText AText))
+
+  (function StartsText ((ASubText String) (AText String)) Boolean
+    (__rtl "startstext" ASubText AText))
+
+  (function AnsiStartsStr ((ASubText String) (AText String)) Boolean
+    (__rtl "startsstr" ASubText AText))
+
+  (function StartsStr ((ASubText String) (AText String)) Boolean
+    (__rtl "startsstr" ASubText AText))
+
+  (function AnsiEndsText ((ASubText String) (AText String)) Boolean
+    (__rtl "endstext" ASubText AText))
+
+  (function EndsText ((ASubText String) (AText String)) Boolean
+    (__rtl "endstext" ASubText AText))
+
+  (function AnsiEndsStr ((ASubText String) (AText String)) Boolean
+    (__rtl "endsstr" ASubText AText))
+
+  (function EndsStr ((ASubText String) (AText String)) Boolean
+    (__rtl "endsstr" ASubText AText))
+
+  (function AnsiReplaceText ((AText String) (AFromText String) (AToText String)) String
+    (__rtl "replacetext" AText AFromText AToText))
+
+  (function ReplaceText ((AText String) (AFromText String) (AToText String)) String
+    (__rtl "replacetext" AText AFromText AToText))
+
+  (function AnsiReplaceStr ((AText String) (AFromText String) (AToText String)) String
+    (__rtl "replacestr" AText AFromText AToText))
+
+  (function ReplaceStr ((AText String) (AFromText String) (AToText String)) String
+    (__rtl "replacestr" AText AFromText AToText))
+
+  (function AnsiMatchText ((AText String) (AValues Array)) Boolean
+    (__rtl "matcharray" AText AValues false))
+
+  (function MatchText ((AText String) (AValues Array)) Boolean
+    (__rtl "matcharray" AText AValues false))
+
+  (function AnsiMatchStr ((AText String) (AValues Array)) Boolean
+    (__rtl "matcharray" AText AValues true))
+
+  (function MatchStr ((AText String) (AValues Array)) Boolean
+    (__rtl "matcharray" AText AValues true))
+
+  (function AnsiIndexText ((AText String) (AValues Array)) Integer
+    (__rtl "indexarray" AText AValues false))
+
+  (function IndexText ((AText String) (AValues Array)) Integer
+    (__rtl "indexarray" AText AValues false))
+
+  (function AnsiIndexStr ((AText String) (AValues Array)) Integer
+    (__rtl "indexarray" AText AValues true))
+
+  (function IndexStr ((AText String) (AValues Array)) Integer
+    (__rtl "indexarray" AText AValues true))
+
+  (function AnsiResemblesText ((AText String) (AOther String)) Boolean
+    (SoundexSimilar AText AOther))
+
+  (function ResemblesText ((AText String) (AOther String)) Boolean
+    (SoundexSimilar AText AOther))
+
+  (function DupeString ((AText String) (ACount Integer)) String
+    (__rtl "dupestring" AText ACount))
+
+  (function ReverseString ((AText String)) String
+    (__rtl "reverse" AText))
+
+  (function AnsiReverseString ((AText String)) String
+    (ReverseString AText))
+
+  (function StuffString ((AText String) (AStart Integer) (ALength Integer) (ASubText String)) String
+    (__rtl "stuffstring" AText AStart ALength ASubText))
+
+  (function RandomFrom ((AValues Array)) String
+    (@ AValues (random (length AValues))))
+
+  (function IfThen ((AValue Boolean) (ATrue Variant) (AFalse Variant)) Variant
+    (if AValue ATrue AFalse))
+
+  (function NaturalCompareText ((S1 String) (S2 String)) Integer
+    (__rtl "naturalcompare" S1 S2))
+
+  (function SplitString ((S String) (Delimiters String)) Array
+    (__rtl "splitstring" S Delimiters))
+
+  (function LeftStr ((AText String) (ACount Integer)) String
+    (copy AText 1 ACount))
+
+  (function AnsiLeftStr ((AText String) (ACount Integer)) String
+    (copy AText 1 ACount))
+
+  (function LeftBStr ((AText String) (ACount Integer)) String
+    (copy AText 1 ACount))
+
+  (function RightStr ((AText String) (ACount Integer)) String
+    (__rtl "rightstr" AText ACount))
+
+  (function AnsiRightStr ((AText String) (ACount Integer)) String
+    (__rtl "rightstr" AText ACount))
+
+  (function RightBStr ((AText String) (ACount Integer)) String
+    (__rtl "rightstr" AText ACount))
+
+  (function MidStr ((AText String) (AStart Integer) (ACount Integer)) String
+    (copy AText AStart ACount))
+
+  (function AnsiMidStr ((AText String) (AStart Integer) (ACount Integer)) String
+    (copy AText AStart ACount))
+
+  (function MidBStr ((AText String) (AStart Integer) (ACount Integer)) String
+    (copy AText AStart ACount))
+
+  (function PosEx ((SubStr String) (S String) (Offset Integer)) Integer
+    (__rtl "posex" SubStr S Offset))
+
+  (function RPos ((SubStr String) (S String)) Integer
+    (__rtl "rpos" SubStr S))
+
+  (function RPosEx ((SubStr String) (S String) (Offset Integer)) Integer
+    (__rtl "rposex" SubStr S Offset))
+
+  (function AddChar ((C String) (S String) (N Integer)) String
+    (if (>= (length S) N) S (concat (DupeString C (- N (length S))) S)))
+
+  (function AddCharR ((C String) (S String) (N Integer)) String
+    (if (>= (length S) N) S (concat S (DupeString C (- N (length S))))))
+
+  (function PadLeft ((S String) (N Integer)) String
+    (__rtl "padleft" S N))
+
+  (function PadRight ((S String) (N Integer)) String
+    (__rtl "padright" S N))
+
+  (function PadCenter ((S String) (N Integer)) String
+    (__rtl "padcenter" S N))
+
+  (function DelSpace ((S String)) String
+    (__rtl "deletechars" S " "))
+
+  (function DelChars ((S String) (Chars String)) String
+    (__rtl "deletechars" S Chars))
+
+  (function DelSpace1 ((S String)) String
+    (__rtl "collapsespaces" S))
+
+  (function Tab2Space ((S String) (Numb Integer)) String
+    (__rtl "tabtospace" S Numb))
+
+  (function NPos ((C String) (S String) (N Integer)) Integer
+    (__rtl "npos" C S N))
+
+  (function Copy2Symb ((S String) (Symb String)) String
+    (if (= (pos Symb S) 0) S (copy S 1 (- (pos Symb S) 1))))
+
+  (function Copy2Space ((S String)) String
+    (Copy2Symb S " "))
+
+  (function AnsiProperCase ((S String) (WordDelims String)) String
+    (__rtl "propercase" S WordDelims))
+
+  (function WordCount ((S String) (WordDelims String)) Integer
+    (__rtl "wordcount" S WordDelims))
+
+  (function WordPosition ((N Integer) (S String) (WordDelims String)) Integer
+    (__rtl "wordposition" N S WordDelims))
+
+  (function ExtractWord ((N Integer) (S String) (WordDelims String)) String
+    (__rtl "extractword" N S WordDelims))
+
+  (function ExtractDelimited ((N Integer) (S String) (Delims String)) String
+    (__rtl "extractword" N S Delims))
+
+  (function IsWordPresent ((W String) (S String) (WordDelims String)) Boolean
+    (__rtl "iswordpresent" W S WordDelims))
+
+  (function IsWild ((InputStr String) (Wilds String) (IgnoreCase Boolean)) Boolean
+    (__rtl "iswild" InputStr Wilds IgnoreCase))
+
+  (function FindPart ((HelpWilds String) (InputStr String)) Integer
+    (__rtl "findpart" HelpWilds InputStr))
+
+  (function XorString ((Key String) (Src String)) String
+    (__rtl "xorstring" Key Src))
+
+  (function XorEncode ((Key String) (Source String)) String
+    (__rtl "xorencode" Key Source))
+
+  (function XorDecode ((Key String) (Source String)) String
+    (__rtl "xordecode" Key Source))
+
+  (function Hex2Dec ((S String)) Integer
+    (__rtl "hextoint" S))
+
+  (function Hex2Dec64 ((S String)) Integer
+    (Hex2Dec S))
+
+  (function Numb2Dec ((S String) (Base Integer)) Integer
+    (__rtl "basetoint" S Base))
+
+  (function Numb2USA ((S String)) String
+    (__rtl "numb2usa" S))
+
+  (function Dec2Numb ((N Integer) (Len Integer) (Base Integer)) String
+    (__rtl "inttobase" N Len Base))
+
+  (function IntToBin ((Value Integer) (Digits Integer)) String
+    (__rtl "inttobase" Value Digits 2))
+
+  (function IntToRoman ((Value Integer)) String
+    (__rtl "inttoroman" Value))
+
+  (function RomanToInt ((S String)) Integer
+    (__rtl "romantoint" S))
+
+  (function RomanToIntDef ((S String) (Default Integer)) Integer
+    (__rtl "romantointdef" S Default))
+
+  (function Soundex ((AText String)) String
+    (__rtl "soundex" AText 4))
+
+  (function SoundexInt ((AText String)) Integer
+    (__rtl "soundexint" AText 4))
+
+  (function SoundexWord ((AText String)) Integer
+    (SoundexInt AText))
+
+  (function DecodeSoundexInt ((AValue Integer)) String
+    (__rtl "decodesoundex" AValue 4))
+
+  (function DecodeSoundexWord ((AValue Integer)) String
+    (DecodeSoundexInt AValue))
+
+  (function SoundexSimilar ((AText String) (AOther String)) Boolean
+    (= (Soundex AText) (Soundex AOther)))
+
+  (function SoundexCompare ((AText String) (AOther String)) Integer
+    (SysUtils.CompareStr (Soundex AText) (Soundex AOther)))
+
+  (function SoundexProc ((AText String) (AOther String)) Boolean
+    (SoundexSimilar AText AOther))
+
+  (function TrimLeftSet ((S String) (CSet String)) String
+    (__rtl "trimleftset" S CSet))
+
+  (function TrimRightSet ((S String) (CSet String)) String
+    (__rtl "trimrightset" S CSet))
+
+  (function TrimSet ((S String) (CSet String)) String
+    (__rtl "trimset" S CSet))
+
+  (function RemoveLeadingChars ((S String) (CSet String)) String
+    (__rtl "trimleftset" S CSet))
+
+  (function RemoveTrailingChars ((S String) (CSet String)) String
+    (__rtl "trimrightset" S CSet))
+
+  (function RemovePadChars ((S String) (CSet String)) String
+    (__rtl "trimset" S CSet))
+
+  (function PosSet ((Chars String) (S String)) Integer
+    (__rtl "posset" Chars S 1))
+
+  (function PosSetEx ((Chars String) (S String) (Offset Integer)) Integer
+    (__rtl "posset" Chars S Offset))
+
+  (function IsEmptyStr ((S String) (EmptyChars String)) Boolean
+    (= (TrimSet S EmptyChars) ""))
+
+)

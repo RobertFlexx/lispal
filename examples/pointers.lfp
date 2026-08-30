@@ -1,0 +1,7 @@
+(program PointerDemo
+  (var (p Pointer (new 41)))
+  (begin
+    (writeln "before: " (deref p))
+    (set! (deref p) (+ (deref p) 1))
+    (writeln "after:  " (deref p))
+    (dispose p)))

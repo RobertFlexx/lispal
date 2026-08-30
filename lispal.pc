@@ -1,0 +1,11 @@
+prefix=${pcfiledir}/../..
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+rtldir=${prefix}/lib/lfp/rtl
+
+Name: lispal
+Description: embeddable lisp-flavored pascal runtime
+Version: 1.0.0
+Libs: -L${libdir} -llispal
+Cflags: -I${includedir}

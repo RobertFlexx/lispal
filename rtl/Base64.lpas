@@ -1,0 +1,14 @@
+(unit Base64
+
+  (uses System)
+
+  (type
+    (enum TBase64DecodingMode bdmStrict bdmMIME))
+
+  (function EncodeStringBase64 ((S String)) String
+    (__rtl "base64_encode" S))
+
+  (function DecodeStringBase64 ((S String) (Strict Boolean)) String
+    (__rtl "base64_decode" S Strict))
+
+)

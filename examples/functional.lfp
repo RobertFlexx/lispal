@@ -1,0 +1,16 @@
+(function square ((x Integer)) Integer
+  (* x x))
+
+(function positive? ((x Integer)) Boolean
+  (> x 0))
+
+(function add ((a Integer) (b Integer)) Integer
+  (+ a b))
+
+(var (numbers Array (list -2 -1 0 1 2 3 4)))
+
+(writeln "squares: " (map square numbers))
+(writeln "positive: " (filter positive? numbers))
+(writeln "sum: " (foldl add 0 numbers))
+
+(writeln "tripled: " (map (lambda ((x Integer)) Integer (* x 3)) numbers))

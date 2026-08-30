@@ -1,0 +1,48 @@
+(program Functional
+  (function double ((x Integer)) Integer
+    (* x 2))
+
+  (function even? ((x Integer)) Boolean
+    (= (mod x 2) 0))
+
+  (function add ((a Integer) (b Integer)) Integer
+    (+ a b))
+
+  (var
+    (xs Array (list 1 2 3 4))
+    (flag Integer 0)
+    (quoted Array '(alpha (beta 2))))
+
+  (begin
+    (assert (= (first xs) 1))
+    (assert (= (last xs) 4))
+    (assert (= (nth 2 xs) 3))
+    (assert (= (first (rest xs)) 2))
+    (assert (= (first (reverse xs)) 4))
+    (assert (= (nth 2 (map double xs)) 6))
+    (assert (= (nth 1 (map (lambda ((x Integer)) Integer (* x 3)) xs)) 6))
+    (assert (= (length (filter even? xs)) 2))
+    (assert (= (foldl add 0 xs) 10))
+    (assert (= (apply add (list 20 22)) 42))
+
+    (foreach double xs)
+
+    (when true
+      (set! flag 1))
+    (unless false
+      (inc flag))
+    (assert (= flag 2))
+
+    (assert (= (cond
+                 ((= flag 0) 10)
+                 ((= flag 2) 42)
+                 (else 99))
+               42))
+
+    (assert (= (do 1 2 3) 3))
+    (assert (= (progn 4 5 6) 6))
+
+    (assert (= (nth 0 quoted) "alpha"))
+    (assert (= (nth 0 (nth 1 quoted)) "beta"))
+    (assert (= (nth 1 (nth 1 quoted)) 2))
+    (writeln "functional-ok")))

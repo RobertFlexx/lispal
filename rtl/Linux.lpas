@@ -1,0 +1,32 @@
+(unit Linux
+
+  (uses System ctypes BaseUnix)
+
+  (function epoll_create ((Size Integer)) Integer
+    (__rtl "linux_epoll_create" Size))
+
+  (function fdatasync ((FD Integer)) Integer
+    (__rtl "linux_fdatasync" FD))
+
+  (function inotify_init () Integer
+    (__rtl "linux_inotify_init"))
+
+  (function inotify_init1 ((Flags Integer)) Integer
+    (__rtl "linux_inotify_init1" Flags))
+
+  (function inotify_add_watch ((FD Integer) (Name String) (Mask Integer)) Integer
+    (__rtl "linux_inotify_add_watch" FD Name Mask))
+
+  (function inotify_rm_watch ((FD Integer) (WD Integer)) Integer
+    (__rtl "linux_inotify_rm_watch" FD WD))
+
+  (function sched_yield () Integer
+    (__rtl "linux_sched_yield"))
+
+  (function setreuid ((RealUID Integer) (EffectiveUID Integer)) Integer
+    (__rtl "linux_setreuid" RealUID EffectiveUID))
+
+  (function setregid ((RealGID Integer) (EffectiveGID Integer)) Integer
+    (__rtl "linux_setregid" RealGID EffectiveGID))
+
+)

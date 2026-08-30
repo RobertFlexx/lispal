@@ -1,0 +1,38 @@
+(unit UnixUtil
+
+  (uses System SysUtils BaseUnix)
+
+  (type
+    (PathStr String))
+
+  (function AddTrailingSeparator ((Path String)) String
+    (SysUtils.IncludeTrailingPathDelimiter Path))
+
+  (function StripTrailingSeparator ((Path String)) String
+    (SysUtils.ExcludeTrailingPathDelimiter Path))
+
+  (function Access ((Path String) (Mode Integer)) Integer
+    (BaseUnix.FpAccess Path Mode))
+
+  (function ChMod ((Path String) (Mode Integer)) Integer
+    (BaseUnix.FpChmod Path Mode))
+
+  (function Dup ((FD Integer)) Integer
+    (BaseUnix.FpDup FD))
+
+  (function Dup2 ((OldFD Integer) (NewFD Integer)) Integer
+    (BaseUnix.FpDup2 OldFD NewFD))
+
+  (function Link ((OldPath String) (NewPath String)) Integer
+    (BaseUnix.FpLink OldPath NewPath))
+
+  (function ReName ((OldPath String) (NewPath String)) Integer
+    (BaseUnix.FpRename OldPath NewPath))
+
+  (function SymLink ((Target String) (LinkPath String)) Integer
+    (BaseUnix.fpSymlink Target LinkPath))
+
+  (function UnLink ((Path String)) Integer
+    (BaseUnix.FpUnlink Path))
+
+)

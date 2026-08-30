@@ -1,0 +1,14 @@
+(unit HeapTrc
+
+  (uses System)
+
+  (procedure CheckPointer ((P Pointer))
+    (__rtl "heaptrc_checkpointer" P))
+
+  (procedure DumpHeap ()
+    (__rtl "heaptrc_dumpheap"))
+
+  (procedure SetHeapTraceOutput ((Name String))
+    (__rtl "heaptrc_setoutput" Name))
+
+)

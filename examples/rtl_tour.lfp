@@ -1,0 +1,18 @@
+(program RtlTour
+  (uses SysUtils StrUtils Math DateUtils Character)
+
+  (var
+    (name String "lispal-1.0.0.tar.gz")
+    (angle Real 45.0))
+
+  (begin
+    (writeln "file name: " (ExtractFileName name))
+    (writeln "extension: " (ExtractFileExt name))
+    (writeln "without extension: " (ChangeFileExt name ""))
+    (writeln "upper: " (UpperCase name))
+    (writeln "contains lispal: " (ContainsText name "LISPAL"))
+    (writeln "45 degrees in radians: " (DegToRad angle))
+    (writeln "2^10: " (Math.Power 2.0 10.0))
+    (writeln "days in february 2024: " (DaysInAMonth 2024 2))
+    (writeln "A is a letter: " (Character.IsLetter "A"))
+    (writeln "qualified call: " (SysUtils.IntToStr 42))))

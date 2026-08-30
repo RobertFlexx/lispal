@@ -1,0 +1,94 @@
+(unit HTTPProtocol
+
+  (uses System SysUtils)
+
+  (type
+    (enum THeader
+      hhUnknown
+      hhAccept hhAcceptCharset hhAcceptEncoding hhAcceptLanguage
+      hhAcceptRanges hhAge hhAllow hhAuthorization hhCacheControl
+      hhConnection hhContentEncoding hhContentLanguage hhContentLength
+      hhContentLocation hhContentMD5 hhContentRange hhContentType hhDate
+      hhETag hhExpires hhExpect hhFrom hhHost hhIfMatch hhIfModifiedSince
+      hhIfNoneMatch hhIfRange hhIfUnModifiedSince hhLastModified hhLocation
+      hhMaxForwards hhPragma hhProxyAuthenticate hhProxyAuthorization hhRange
+      hhReferer hhRetryAfter hhServer hhTE hhTrailer hhTransferEncoding
+      hhUpgrade hhUserAgent hhVary hhVia hhWarning hhWWWAuthenticate)
+    (THeaders (set-of THeader))
+    (enum THeaderDirection hdRequest hdResponse)
+    (THeaderDirections (set-of THeaderDirection)))
+
+  (const
+    (HeaderAccept String "Accept")
+    (HeaderAcceptCharset String "Accept-Charset")
+    (HeaderAcceptEncoding String "Accept-Encoding")
+    (HeaderAcceptLanguage String "Accept-Language")
+    (HeaderAcceptRanges String "Accept-Ranges")
+    (HeaderAge String "Age")
+    (HeaderAllow String "Allow")
+    (HeaderAuthorization String "Authorization")
+    (HeaderCacheControl String "Cache-Control")
+    (HeaderConnection String "Connection")
+    (HeaderContentEncoding String "Content-Encoding")
+    (HeaderContentLanguage String "Content-Language")
+    (HeaderContentLength String "Content-Length")
+    (HeaderContentLocation String "Content-Location")
+    (HeaderContentMD5 String "Content-MD5")
+    (HeaderContentRange String "Content-Range")
+    (HeaderContentType String "Content-Type")
+    (HeaderDate String "Date")
+    (HeaderETag String "ETag")
+    (HeaderExpires String "Expires")
+    (HeaderExpect String "Expect")
+    (HeaderFrom String "From")
+    (HeaderHost String "Host")
+    (HeaderIfMatch String "If-Match")
+    (HeaderIfModifiedSince String "If-Modified-Since")
+    (HeaderIfNoneMatch String "If-None-Match")
+    (HeaderIfRange String "If-Range")
+    (HeaderIfUnModifiedSince String "If-Unmodified-Since")
+    (HeaderLastModified String "Last-Modified")
+    (HeaderLocation String "Location")
+    (HeaderMaxForwards String "Max-Forwards")
+    (HeaderPragma String "Pragma")
+    (HeaderProxyAuthenticate String "Proxy-Authenticate")
+    (HeaderProxyAuthorization String "Proxy-Authorization")
+    (HeaderRange String "Range")
+    (HeaderReferer String "Referer")
+    (HeaderRetryAfter String "Retry-After")
+    (HeaderServer String "Server")
+    (HeaderTE String "TE")
+    (HeaderTrailer String "Trailer")
+    (HeaderTransferEncoding String "Transfer-Encoding")
+    (HeaderUpgrade String "Upgrade")
+    (HeaderUserAgent String "User-Agent")
+    (HeaderVary String "Vary")
+    (HeaderVia String "Via")
+    (HeaderWarning String "Warning")
+    (HeaderWWWAuthenticate String "WWW-Authenticate")
+    (HeaderXRequestedWith String "X-Requested-With")
+    (HeaderCookie String "Cookie")
+    (HeaderSetCookie String "Set-Cookie"))
+
+  (function HeaderName ((AHeader THeader)) String
+    (__rtl "http_headername" (ord AHeader)))
+
+  (function HeaderType ((AHeader String)) THeader
+    (__rtl "http_headertype" AHeader))
+
+  (function HTTPDecode ((AStr String)) String
+    (__rtl "http_decode" AStr))
+
+  (function HTTPEncode ((AStr String)) String
+    (__rtl "http_encode" AStr))
+
+  (function IncludeHTTPPathDelimiter ((AStr String)) String
+    (if (or (= AStr "") (= (copy AStr (length AStr) 1) "/"))
+        AStr
+        (concat AStr "/")))
+
+  (function ExcludeHTTPPathDelimiter ((AStr String)) String
+    (if (and (> (length AStr) 0) (= (copy AStr (length AStr) 1) "/"))
+        (copy AStr 1 (- (length AStr) 1))
+        AStr))
+)

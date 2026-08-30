@@ -1,0 +1,20 @@
+(program Records
+  (type
+    (record Person
+      (name String)
+      (age Integer))
+    (enum Color Red Green Blue))
+
+  (var
+    (alice Person (Person "Alice" 17))
+    (favorite Color Green))
+
+  (begin
+    (writeln "name: " (field alice name))
+    (writeln "age:  " (field alice age))
+    (inc-age alice)
+    (writeln "new age: " (field alice age))
+    (writeln "favorite color: " favorite))
+
+  (procedure inc-age ((p Person))
+    (set! (field p age) (+ (field p age) 1))))

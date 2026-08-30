@@ -1,0 +1,6 @@
+#!/usr/bin/env lfp
+(program LexerMath
+  (begin
+    (assert (= (* 6 7) 42) "multiplication must not lex as a comment")
+    (assert (= (* 2 3 4) 24) "n-ary multiplication failed")
+    (writeln "lexer-math-ok")))

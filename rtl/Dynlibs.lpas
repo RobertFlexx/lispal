@@ -1,0 +1,33 @@
+(unit Dynlibs
+
+  (uses System)
+
+  (type
+    (TLibHandle Integer)
+    (HModule Integer))
+
+  (const
+    (NilHandle Integer 0))
+
+  (function LoadLibrary ((Name String)) TLibHandle
+    (__rtl "dyn_loadlibrary" Name))
+
+  (function SafeLoadLibrary ((Name String)) TLibHandle
+    (__rtl "dyn_safeloadlibrary" Name))
+
+  (function UnloadLibrary ((Lib TLibHandle)) Boolean
+    (__rtl "dyn_unloadlibrary" Lib))
+
+  (function FreeLibrary ((Lib TLibHandle)) Boolean
+    (__rtl "dyn_unloadlibrary" Lib))
+
+  (function GetProcedureAddress ((Lib TLibHandle) (ProcName String)) Pointer
+    (__rtl "dyn_getprocedureaddress" Lib ProcName))
+
+  (function GetProcAddress ((Lib TLibHandle) (ProcName String)) Pointer
+    (__rtl "dyn_getprocedureaddress" Lib ProcName))
+
+  (function GetLoadErrorStr () String
+    (__rtl "dyn_getloaderrorstr"))
+
+)

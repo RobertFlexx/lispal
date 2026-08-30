@@ -1,0 +1,14 @@
+(unit UnixCp
+
+  (uses System)
+
+  (function GetCodepageByName ((CPName String)) Integer
+    (__rtl "unixcp_getbyname" CPName))
+
+  (function GetSystemCodepage () Integer
+    (__rtl "unixcp_getsystem"))
+
+  (function GetCodepageData ((CodePage Integer)) Integer
+    (__rtl "unixcp_getdata" CodePage))
+
+)

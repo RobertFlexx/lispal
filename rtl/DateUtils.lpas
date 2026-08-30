@@ -1,0 +1,591 @@
+(unit DateUtils
+
+  (uses System SysUtils Math)
+
+  (const
+    (DaysPerWeek Integer 7)
+    (WeeksPerFortnight Integer 2)
+    (MonthsPerYear Integer 12)
+    (YearsPerDecade Integer 10)
+    (YearsPerCentury Integer 100)
+    (YearsPerMillennium Integer 1000)
+    (DayMonday Integer 1)
+    (DayTuesday Integer 2)
+    (DayWednesday Integer 3)
+    (DayThursday Integer 4)
+    (DayFriday Integer 5)
+    (DaySaturday Integer 6)
+    (DaySunday Integer 7)
+    (MonthJanuary Integer 1)
+    (MonthFebruary Integer 2)
+    (MonthMarch Integer 3)
+    (MonthApril Integer 4)
+    (MonthMay Integer 5)
+    (MonthJune Integer 6)
+    (MonthJuly Integer 7)
+    (MonthAugust Integer 8)
+    (MonthSeptember Integer 9)
+    (MonthOctober Integer 10)
+    (MonthNovember Integer 11)
+    (MonthDecember Integer 12)
+    (OneHour Real 0.0416666666666666667)
+    (OneMinute Real 0.0006944444444444444)
+    (OneSecond Real 0.00001157407407407407)
+    (OneMillisecond Real 0.00000001157407407407407)
+    (ApproxDaysPerMonth Real 30.4375)
+    (ApproxDaysPerYear Real 365.25))
+
+  (function DateOf ((AValue TDateTime)) TDateTime
+    (__rtl "dateof" AValue))
+
+  (function TimeOf ((AValue TDateTime)) TDateTime
+    (__rtl "timeofday" AValue))
+
+  (function YearOf ((AValue TDateTime)) Integer
+    (__rtl "yearof" AValue))
+
+  (function MonthOf ((AValue TDateTime)) Integer
+    (__rtl "monthof" AValue))
+
+  (function DayOf ((AValue TDateTime)) Integer
+    (__rtl "dayof" AValue))
+
+  (function HourOf ((AValue TDateTime)) Integer
+    (__rtl "hourof" AValue))
+
+  (function MinuteOf ((AValue TDateTime)) Integer
+    (__rtl "minuteof" AValue))
+
+  (function SecondOf ((AValue TDateTime)) Integer
+    (__rtl "secondof" AValue))
+
+  (function MilliSecondOf ((AValue TDateTime)) Integer
+    (__rtl "millisecondof" AValue))
+
+  (function DayOfTheWeek ((AValue TDateTime)) Integer
+    (__rtl "dayoftheweek" AValue))
+
+  (function DayOfTheYear ((AValue TDateTime)) Integer
+    (__rtl "dayoftheyear" AValue))
+
+  (function WeekOfTheYear ((AValue TDateTime)) Integer
+    (__rtl "weekoftheyear" AValue))
+
+  (function WeekOfTheMonth ((AValue TDateTime)) Integer
+    (__rtl "weekofthemonth" AValue))
+
+  (function DaysInAMonth ((AYear Integer) (AMonth Integer)) Integer
+    (__rtl "daysinamonth" AYear AMonth))
+
+  (function DaysInAYear ((AYear Integer)) Integer
+    (__rtl "daysinayear" AYear))
+
+  (function DaysInMonth ((AValue TDateTime)) Integer
+    (DaysInAMonth (YearOf AValue) (MonthOf AValue)))
+
+  (function DaysInYear ((AValue TDateTime)) Integer
+    (DaysInAYear (YearOf AValue)))
+
+  (function IsInLeapYear ((AValue TDateTime)) Boolean
+    (__rtl "isleapyear" (YearOf AValue)))
+
+  (function IsPM ((AValue TDateTime)) Boolean
+    (>= (HourOf AValue) 12))
+
+  (function IsAM ((AValue TDateTime)) Boolean
+    (< (HourOf AValue) 12))
+
+  (function IsValidDate ((AYear Integer) (AMonth Integer) (ADay Integer)) Boolean
+    (and (>= AYear 1) (>= AMonth 1) (<= AMonth 12) (>= ADay 1) (<= ADay (DaysInAMonth AYear AMonth))))
+
+  (function IsValidTime ((AHour Integer) (AMinute Integer) (ASecond Integer) (AMilliSecond Integer)) Boolean
+    (and (>= AHour 0) (< AHour 24) (>= AMinute 0) (< AMinute 60) (>= ASecond 0) (< ASecond 60) (>= AMilliSecond 0) (< AMilliSecond 1000)))
+
+  (function IsValidDateTime ((AYear Integer) (AMonth Integer) (ADay Integer) (AHour Integer) (AMinute Integer) (ASecond Integer) (AMilliSecond Integer)) Boolean
+    (and (IsValidDate AYear AMonth ADay) (IsValidTime AHour AMinute ASecond AMilliSecond)))
+
+  (function IsValidDateDay ((AYear Integer) (ADayOfYear Integer)) Boolean
+    (and (>= ADayOfYear 1) (<= ADayOfYear (DaysInAYear AYear))))
+
+  (function WeeksInAYear ((AYear Integer)) Integer
+    (__rtl "weeksinyear" AYear))
+
+  (function WeeksInYear ((AValue TDateTime)) Integer
+    (WeeksInAYear (YearOf AValue)))
+
+  (function Today () TDateTime
+    (__rtl "date"))
+
+  (function Yesterday () TDateTime
+    (- (Today) 1))
+
+  (function Tomorrow () TDateTime
+    (+ (Today) 1))
+
+  (function IsToday ((AValue TDateTime)) Boolean
+    (= (DateOf AValue) (Today)))
+
+  (function IsSameDay ((AValue TDateTime) (ABasis TDateTime)) Boolean
+    (= (DateOf AValue) (DateOf ABasis)))
+
+  (function IsSameMonth ((AValue TDateTime) (ABasis TDateTime)) Boolean
+    (and (= (YearOf AValue) (YearOf ABasis)) (= (MonthOf AValue) (MonthOf ABasis))))
+
+  (function PreviousDayOfWeek ((DayOfWeek Integer)) Integer
+    (if (= DayOfWeek 1) 7 (- DayOfWeek 1)))
+
+  (function StartOfTheYear ((AValue TDateTime)) TDateTime
+    (SysUtils.EncodeDate (YearOf AValue) 1 1))
+
+  (function StartOfAYear ((AYear Integer)) TDateTime
+    (SysUtils.EncodeDate AYear 1 1))
+
+  (function EndOfTheYear ((AValue TDateTime)) TDateTime
+    (- (StartOfAYear (+ (YearOf AValue) 1)) OneMillisecond))
+
+  (function EndOfAYear ((AYear Integer)) TDateTime
+    (- (StartOfAYear (+ AYear 1)) OneMillisecond))
+
+  (function StartOfTheMonth ((AValue TDateTime)) TDateTime
+    (SysUtils.EncodeDate (YearOf AValue) (MonthOf AValue) 1))
+
+  (function StartOfAMonth ((AYear Integer) (AMonth Integer)) TDateTime
+    (SysUtils.EncodeDate AYear AMonth 1))
+
+  (function EndOfTheMonth ((AValue TDateTime)) TDateTime
+    (- (SysUtils.IncMonth (StartOfTheMonth AValue) 1) OneMillisecond))
+
+  (function EndOfAMonth ((AYear Integer) (AMonth Integer)) TDateTime
+    (- (SysUtils.IncMonth (StartOfAMonth AYear AMonth) 1) OneMillisecond))
+
+  (function StartOfTheDay ((AValue TDateTime)) TDateTime
+    (DateOf AValue))
+
+  (function StartOfADay ((AYear Integer) (AMonth Integer) (ADay Integer)) TDateTime
+    (SysUtils.EncodeDate AYear AMonth ADay))
+
+  (function EndOfTheDay ((AValue TDateTime)) TDateTime
+    (+ (DateOf AValue) (- 1 OneMillisecond)))
+
+  (function EndOfADay ((AYear Integer) (AMonth Integer) (ADay Integer)) TDateTime
+    (+ (StartOfADay AYear AMonth ADay) (- 1 OneMillisecond)))
+
+  (function StartOfTheWeek ((AValue TDateTime)) TDateTime
+    (- (DateOf AValue) (- (DayOfTheWeek AValue) 1)))
+
+  (function EndOfTheWeek ((AValue TDateTime)) TDateTime
+    (+ (StartOfTheWeek AValue) (- 7 OneMillisecond)))
+
+  (function StartOfAWeek ((AYear Integer) (AWeekOfYear Integer)) TDateTime
+    (__rtl "startofaweek" AYear AWeekOfYear))
+
+  (function EndOfAWeek ((AYear Integer) (AWeekOfYear Integer)) TDateTime
+    (+ (StartOfAWeek AYear AWeekOfYear) (- 7 OneMillisecond)))
+
+  (function MonthOfTheYear ((AValue TDateTime)) Integer
+    (MonthOf AValue))
+
+  (function DayOfTheMonth ((AValue TDateTime)) Integer
+    (DayOf AValue))
+
+  (function HourOfTheDay ((AValue TDateTime)) Integer
+    (HourOf AValue))
+
+  (function MinuteOfTheHour ((AValue TDateTime)) Integer
+    (MinuteOf AValue))
+
+  (function SecondOfTheMinute ((AValue TDateTime)) Integer
+    (SecondOf AValue))
+
+  (function MilliSecondOfTheSecond ((AValue TDateTime)) Integer
+    (MilliSecondOf AValue))
+
+  (function HourOfTheYear ((AValue TDateTime)) Integer
+    (+ (* (- (DayOfTheYear AValue) 1) 24) (HourOf AValue)))
+
+  (function MinuteOfTheYear ((AValue TDateTime)) Integer
+    (+ (* (HourOfTheYear AValue) 60) (MinuteOf AValue)))
+
+  (function SecondOfTheYear ((AValue TDateTime)) Integer
+    (+ (* (MinuteOfTheYear AValue) 60) (SecondOf AValue)))
+
+  (function MilliSecondOfTheYear ((AValue TDateTime)) Integer
+    (+ (* (SecondOfTheYear AValue) 1000) (MilliSecondOf AValue)))
+
+  (function HourOfTheMonth ((AValue TDateTime)) Integer
+    (+ (* (- (DayOf AValue) 1) 24) (HourOf AValue)))
+
+  (function MinuteOfTheMonth ((AValue TDateTime)) Integer
+    (+ (* (HourOfTheMonth AValue) 60) (MinuteOf AValue)))
+
+  (function SecondOfTheMonth ((AValue TDateTime)) Integer
+    (+ (* (MinuteOfTheMonth AValue) 60) (SecondOf AValue)))
+
+  (function MilliSecondOfTheMonth ((AValue TDateTime)) Integer
+    (+ (* (SecondOfTheMonth AValue) 1000) (MilliSecondOf AValue)))
+
+  (function HourOfTheWeek ((AValue TDateTime)) Integer
+    (+ (* (- (DayOfTheWeek AValue) 1) 24) (HourOf AValue)))
+
+  (function MinuteOfTheWeek ((AValue TDateTime)) Integer
+    (+ (* (HourOfTheWeek AValue) 60) (MinuteOf AValue)))
+
+  (function SecondOfTheWeek ((AValue TDateTime)) Integer
+    (+ (* (MinuteOfTheWeek AValue) 60) (SecondOf AValue)))
+
+  (function MilliSecondOfTheWeek ((AValue TDateTime)) Integer
+    (+ (* (SecondOfTheWeek AValue) 1000) (MilliSecondOf AValue)))
+
+  (function MinuteOfTheDay ((AValue TDateTime)) Integer
+    (+ (* (HourOf AValue) 60) (MinuteOf AValue)))
+
+  (function SecondOfTheDay ((AValue TDateTime)) Integer
+    (+ (* (MinuteOfTheDay AValue) 60) (SecondOf AValue)))
+
+  (function MilliSecondOfTheDay ((AValue TDateTime)) Integer
+    (+ (* (SecondOfTheDay AValue) 1000) (MilliSecondOf AValue)))
+
+  (function SecondOfTheHour ((AValue TDateTime)) Integer
+    (+ (* (MinuteOf AValue) 60) (SecondOf AValue)))
+
+  (function MilliSecondOfTheHour ((AValue TDateTime)) Integer
+    (+ (* (SecondOfTheHour AValue) 1000) (MilliSecondOf AValue)))
+
+  (function MilliSecondOfTheMinute ((AValue TDateTime)) Integer
+    (+ (* (SecondOf AValue) 1000) (MilliSecondOf AValue)))
+
+  (function YearsBetween ((ANow TDateTime) (AThen TDateTime)) Integer
+    (__rtl "yearsbetween" ANow AThen))
+
+  (function YearSpan ((ANow TDateTime) (AThen TDateTime)) Real
+    (__rtl "yearspan" ANow AThen))
+
+  (function WithinPastYears ((ANow TDateTime) (AThen TDateTime) (Amount Integer)) Boolean
+    (<= (YearsBetween ANow AThen) Amount))
+
+  (function MonthsBetween ((ANow TDateTime) (AThen TDateTime)) Integer
+    (__rtl "monthsbetween" ANow AThen))
+
+  (function MonthSpan ((ANow TDateTime) (AThen TDateTime)) Real
+    (__rtl "monthspan" ANow AThen))
+
+  (function WithinPastMonths ((ANow TDateTime) (AThen TDateTime) (Amount Integer)) Boolean
+    (<= (MonthsBetween ANow AThen) Amount))
+
+  (function WeeksBetween ((ANow TDateTime) (AThen TDateTime)) Integer
+    (__rtl "weeksbetween" ANow AThen))
+
+  (function WeekSpan ((ANow TDateTime) (AThen TDateTime)) Real
+    (__rtl "weekspan" ANow AThen))
+
+  (function WithinPastWeeks ((ANow TDateTime) (AThen TDateTime) (Amount Integer)) Boolean
+    (<= (WeeksBetween ANow AThen) Amount))
+
+  (function DaysBetween ((ANow TDateTime) (AThen TDateTime)) Integer
+    (__rtl "daysbetween" ANow AThen))
+
+  (function DaySpan ((ANow TDateTime) (AThen TDateTime)) Real
+    (__rtl "dayspan" ANow AThen))
+
+  (function WithinPastDays ((ANow TDateTime) (AThen TDateTime) (Amount Integer)) Boolean
+    (<= (DaysBetween ANow AThen) Amount))
+
+  (function HoursBetween ((ANow TDateTime) (AThen TDateTime)) Integer
+    (__rtl "hoursbetween" ANow AThen))
+
+  (function HourSpan ((ANow TDateTime) (AThen TDateTime)) Real
+    (__rtl "hourspan" ANow AThen))
+
+  (function WithinPastHours ((ANow TDateTime) (AThen TDateTime) (Amount Integer)) Boolean
+    (<= (HoursBetween ANow AThen) Amount))
+
+  (function MinutesBetween ((ANow TDateTime) (AThen TDateTime)) Integer
+    (__rtl "minutesbetween" ANow AThen))
+
+  (function MinuteSpan ((ANow TDateTime) (AThen TDateTime)) Real
+    (__rtl "minutespan" ANow AThen))
+
+  (function WithinPastMinutes ((ANow TDateTime) (AThen TDateTime) (Amount Integer)) Boolean
+    (<= (MinutesBetween ANow AThen) Amount))
+
+  (function SecondsBetween ((ANow TDateTime) (AThen TDateTime)) Integer
+    (__rtl "secondsbetween" ANow AThen))
+
+  (function SecondSpan ((ANow TDateTime) (AThen TDateTime)) Real
+    (__rtl "secondspan" ANow AThen))
+
+  (function WithinPastSeconds ((ANow TDateTime) (AThen TDateTime) (Amount Integer)) Boolean
+    (<= (SecondsBetween ANow AThen) Amount))
+
+  (function MilliSecondsBetween ((ANow TDateTime) (AThen TDateTime)) Integer
+    (__rtl "millisecondsbetween" ANow AThen))
+
+  (function MilliSecondSpan ((ANow TDateTime) (AThen TDateTime)) Real
+    (__rtl "millisecondspan" ANow AThen))
+
+  (function WithinPastMilliSeconds ((ANow TDateTime) (AThen TDateTime) (Amount Integer)) Boolean
+    (<= (MilliSecondsBetween ANow AThen) Amount))
+
+  (function IncYear ((AValue TDateTime) (ANumber Integer)) TDateTime
+    (__rtl "incyear" AValue ANumber))
+
+  (function IncMonth ((AValue TDateTime) (ANumber Integer)) TDateTime
+    (__rtl "incmonth" AValue ANumber))
+
+  (function IncWeek ((AValue TDateTime) (ANumber Integer)) TDateTime
+    (__rtl "incweek" AValue ANumber))
+
+  (function IncDay ((AValue TDateTime) (ANumber Integer)) TDateTime
+    (__rtl "incday" AValue ANumber))
+
+  (function IncHour ((AValue TDateTime) (ANumber Integer)) TDateTime
+    (__rtl "inchour" AValue ANumber))
+
+  (function IncMinute ((AValue TDateTime) (ANumber Integer)) TDateTime
+    (__rtl "incminute" AValue ANumber))
+
+  (function IncSecond ((AValue TDateTime) (ANumber Integer)) TDateTime
+    (__rtl "incsecond" AValue ANumber))
+
+  (function IncMilliSecond ((AValue TDateTime) (ANumber Integer)) TDateTime
+    (__rtl "incmillisecond" AValue ANumber))
+
+  (function EncodeDateTime ((AYear Integer) (AMonth Integer) (ADay Integer) (AHour Integer) (AMinute Integer) (ASecond Integer) (AMilliSecond Integer)) TDateTime
+    (__rtl "encodedatetime" AYear AMonth ADay AHour AMinute ASecond AMilliSecond))
+
+  (function EncodeDateDay ((AYear Integer) (ADayOfYear Integer)) TDateTime
+    (__rtl "encodedateday" AYear ADayOfYear))
+
+  (function EncodeDateWeek ((AYear Integer) (AWeekOfYear Integer)) TDateTime
+    (__rtl "encodedateweek" AYear AWeekOfYear))
+
+  (function EncodeTimeInterval ((Hour Integer) (Minute Integer) (Second Integer) (MilliSecond Integer)) TDateTime
+    (+ (/ Hour 24.0) (/ Minute 1440.0) (/ Second 86400.0) (/ MilliSecond 86400000.0)))
+
+  (function RecodeYear ((AValue TDateTime) (AYear Integer)) TDateTime
+    (EncodeDateTime AYear (MonthOf AValue) (DayOf AValue) (HourOf AValue) (MinuteOf AValue) (SecondOf AValue) (MilliSecondOf AValue)))
+
+  (function RecodeMonth ((AValue TDateTime) (AMonth Integer)) TDateTime
+    (EncodeDateTime (YearOf AValue) AMonth (DayOf AValue) (HourOf AValue) (MinuteOf AValue) (SecondOf AValue) (MilliSecondOf AValue)))
+
+  (function RecodeDay ((AValue TDateTime) (ADay Integer)) TDateTime
+    (EncodeDateTime (YearOf AValue) (MonthOf AValue) ADay (HourOf AValue) (MinuteOf AValue) (SecondOf AValue) (MilliSecondOf AValue)))
+
+  (function RecodeHour ((AValue TDateTime) (AHour Integer)) TDateTime
+    (EncodeDateTime (YearOf AValue) (MonthOf AValue) (DayOf AValue) AHour (MinuteOf AValue) (SecondOf AValue) (MilliSecondOf AValue)))
+
+  (function RecodeMinute ((AValue TDateTime) (AMinute Integer)) TDateTime
+    (EncodeDateTime (YearOf AValue) (MonthOf AValue) (DayOf AValue) (HourOf AValue) AMinute (SecondOf AValue) (MilliSecondOf AValue)))
+
+  (function RecodeSecond ((AValue TDateTime) (ASecond Integer)) TDateTime
+    (EncodeDateTime (YearOf AValue) (MonthOf AValue) (DayOf AValue) (HourOf AValue) (MinuteOf AValue) ASecond (MilliSecondOf AValue)))
+
+  (function RecodeMilliSecond ((AValue TDateTime) (AMilliSecond Integer)) TDateTime
+    (EncodeDateTime (YearOf AValue) (MonthOf AValue) (DayOf AValue) (HourOf AValue) (MinuteOf AValue) (SecondOf AValue) AMilliSecond))
+
+  (function RecodeDate ((AValue TDateTime) (AYear Integer) (AMonth Integer) (ADay Integer)) TDateTime
+    (EncodeDateTime AYear AMonth ADay (HourOf AValue) (MinuteOf AValue) (SecondOf AValue) (MilliSecondOf AValue)))
+
+  (function RecodeTime ((AValue TDateTime) (AHour Integer) (AMinute Integer) (ASecond Integer) (AMilliSecond Integer)) TDateTime
+    (EncodeDateTime (YearOf AValue) (MonthOf AValue) (DayOf AValue) AHour AMinute ASecond AMilliSecond))
+
+  (function RecodeDateTime ((AValue TDateTime) (AYear Integer) (AMonth Integer) (ADay Integer) (AHour Integer) (AMinute Integer) (ASecond Integer) (AMilliSecond Integer)) TDateTime
+    (EncodeDateTime AYear AMonth ADay AHour AMinute ASecond AMilliSecond))
+
+  (function CompareDate ((A TDateTime) (B TDateTime)) Integer
+    (__rtl "comparedate" A B))
+
+  (function CompareTime ((A TDateTime) (B TDateTime)) Integer
+    (__rtl "comparetime" A B))
+
+  (function CompareDateTime ((A TDateTime) (B TDateTime)) Integer
+    (__rtl "comparedatetime" A B))
+
+  (function SameDate ((A TDateTime) (B TDateTime)) Boolean
+    (= (CompareDate A B) 0))
+
+  (function SameTime ((A TDateTime) (B TDateTime)) Boolean
+    (= (CompareTime A B) 0))
+
+  (function SameDateTime ((A TDateTime) (B TDateTime)) Boolean
+    (= (CompareDateTime A B) 0))
+
+  (function DateTimeToUnix ((AValue TDateTime)) Integer
+    (__rtl "datetounix" AValue))
+
+  (function UnixToDateTime ((AValue Integer)) TDateTime
+    (__rtl "unixtodate" AValue))
+
+  (function DateToISO8601 ((AValue TDateTime)) String
+    (__rtl "datetoiso8601" AValue))
+
+  (function ISO8601ToDate ((S String)) TDateTime
+    (__rtl "iso8601todate" S))
+
+  (function DateTimeToJulianDate ((AValue TDateTime)) Real
+    (__rtl "julian" AValue))
+
+  (function JulianDateToDateTime ((AValue Real)) TDateTime
+    (__rtl "fromjulian" AValue))
+
+  (function DateTimeToModifiedJulianDate ((AValue TDateTime)) Real
+    (__rtl "modifiedjulian" AValue))
+
+  (function ModifiedJulianDateToDateTime ((AValue Real)) TDateTime
+    (__rtl "frommodifiedjulian" AValue))
+
+  (function TryEncodeDate ((AYear Integer) (AMonth Integer) (ADay Integer)) Boolean
+    (IsValidDate AYear AMonth ADay))
+
+  (function TryEncodeTime ((AHour Integer) (AMinute Integer) (ASecond Integer) (AMilliSecond Integer)) Boolean
+    (IsValidTime AHour AMinute ASecond AMilliSecond))
+
+  (function TryEncodeDateTime ((AYear Integer) (AMonth Integer) (ADay Integer) (AHour Integer) (AMinute Integer) (ASecond Integer) (AMilliSecond Integer)) Boolean
+    (IsValidDateTime AYear AMonth ADay AHour AMinute ASecond AMilliSecond))
+
+  (function CenturyOf ((AValue TDateTime)) Integer
+    (__rtl "centuryof" AValue))
+
+  (function CenturyOfTheEra ((AValue TDateTime)) Integer
+    (__rtl "centuryof" AValue))
+
+  (function YearOfTheCentury ((AValue TDateTime)) Integer
+    (__rtl "yearofthecentury" AValue))
+
+  (function YearOfTheDecade ((AValue TDateTime)) Integer
+    (__rtl "yearofthedecade" AValue))
+
+  (function DecadeOf ((AValue TDateTime)) Integer
+    (__rtl "decadeof" AValue))
+
+  (function DecadeOfTheCentury ((AValue TDateTime)) Integer
+    (__rtl "decadeofthecentury" AValue))
+
+  (function DecadeOfTheEra ((AValue TDateTime)) Integer
+    (__rtl "decadeof" AValue))
+
+  (function YearOfTheEra ((AValue TDateTime)) Integer
+    (__rtl "yearof" AValue))
+
+  (function EraOf ((AValue TDateTime)) Integer
+    (__rtl "eraof" AValue))
+
+  (function WeekOf ((AValue TDateTime)) Integer
+    (__rtl "weekoftheyear" AValue))
+
+  (function NthDayOfWeek ((AValue TDateTime)) Integer
+    (+ 1 (div (- (DayOf AValue) 1) 7)))
+
+
+  (function YearOfTheYear ((AValue TDateTime)) Integer
+    (YearOf AValue))
+
+
+
+
+
+
+
+  (function StartOfYear ((AValue TDateTime)) TDateTime
+    (StartOfTheYear AValue))
+
+  (function EndOfYear ((AValue TDateTime)) TDateTime
+    (EndOfTheYear AValue))
+
+  (function StartOfMonth ((AValue TDateTime)) TDateTime
+    (StartOfTheMonth AValue))
+
+  (function EndOfMonth ((AValue TDateTime)) TDateTime
+    (EndOfTheMonth AValue))
+
+  (function StartOfWeek ((AValue TDateTime)) TDateTime
+    (StartOfTheWeek AValue))
+
+  (function EndOfWeek ((AValue TDateTime)) TDateTime
+    (EndOfTheWeek AValue))
+
+  (function StartOfDay ((AValue TDateTime)) TDateTime
+    (StartOfTheDay AValue))
+
+  (function EndOfDay ((AValue TDateTime)) TDateTime
+    (EndOfTheDay AValue))
+
+  (function PreviousYear ((AValue TDateTime)) TDateTime
+    (IncYear AValue -1))
+
+  (function NextYear ((AValue TDateTime)) TDateTime
+    (IncYear AValue 1))
+
+  (function PreviousMonth ((AValue TDateTime)) TDateTime
+    (IncMonth AValue -1))
+
+  (function NextMonth ((AValue TDateTime)) TDateTime
+    (IncMonth AValue 1))
+
+  (function PreviousWeek ((AValue TDateTime)) TDateTime
+    (IncWeek AValue -1))
+
+  (function NextWeek ((AValue TDateTime)) TDateTime
+    (IncWeek AValue 1))
+
+  (function PreviousDay ((AValue TDateTime)) TDateTime
+    (IncDay AValue -1))
+
+  (function NextDay ((AValue TDateTime)) TDateTime
+    (IncDay AValue 1))
+
+  (function PreviousHour ((AValue TDateTime)) TDateTime
+    (IncHour AValue -1))
+
+  (function NextHour ((AValue TDateTime)) TDateTime
+    (IncHour AValue 1))
+
+  (function PreviousMinute ((AValue TDateTime)) TDateTime
+    (IncMinute AValue -1))
+
+  (function NextMinute ((AValue TDateTime)) TDateTime
+    (IncMinute AValue 1))
+
+  (function PreviousSecond ((AValue TDateTime)) TDateTime
+    (IncSecond AValue -1))
+
+  (function NextSecond ((AValue TDateTime)) TDateTime
+    (IncSecond AValue 1))
+
+  (function PreviousMilliSecond ((AValue TDateTime)) TDateTime
+    (IncMilliSecond AValue -1))
+
+  (function NextMilliSecond ((AValue TDateTime)) TDateTime
+    (IncMilliSecond AValue 1))
+
+  (function SameYear ((A TDateTime) (B TDateTime)) Boolean
+    (= (YearOf A) (YearOf B)))
+
+  (function SameMonth ((A TDateTime) (B TDateTime)) Boolean
+    (and (= (YearOf A) (YearOf B)) (= (MonthOf A) (MonthOf B))))
+
+  (function SameWeek ((A TDateTime) (B TDateTime)) Boolean
+    (= (StartOfTheWeek A) (StartOfTheWeek B)))
+
+  (function SameDay ((A TDateTime) (B TDateTime)) Boolean
+    (= (DateOf A) (DateOf B)))
+
+  (function SameHour ((A TDateTime) (B TDateTime)) Boolean
+    (and (SameDay A B) (= (HourOf A) (HourOf B))))
+
+  (function SameMinute ((A TDateTime) (B TDateTime)) Boolean
+    (and (SameHour A B) (= (MinuteOf A) (MinuteOf B))))
+
+  (function SameSecond ((A TDateTime) (B TDateTime)) Boolean
+    (and (SameMinute A B) (= (SecondOf A) (SecondOf B))))
+
+  (function SameMilliSecond ((A TDateTime) (B TDateTime)) Boolean
+    (and (SameSecond A B) (= (MilliSecondOf A) (MilliSecondOf B))))
+
+  (function LocalTimeToUniversal ((Value TDateTime)) TDateTime
+    (SysUtils.LocalTimeToUniversal Value))
+
+  (function UniversalTimeToLocal ((Value TDateTime)) TDateTime
+    (__rtl "universaltolocal" Value))
+
+)

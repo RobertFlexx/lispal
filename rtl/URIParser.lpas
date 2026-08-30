@@ -1,0 +1,30 @@
+(unit URIParser
+
+  (uses System)
+
+  (type
+    (record TURI
+      (Protocol String)
+      (Username String)
+      (Password String)
+      (Host String)
+      (Port Word)
+      (Path String)
+      (Document String)
+      (Params String)
+      (Bookmark String)
+      (HasAuthority Boolean)))
+
+  (function ParseURI ((URI String) (Decode Boolean)) TURI
+    (__rtl "uri_parse" URI Decode))
+
+  (function EncodeURI ((URI TURI)) String
+    (__rtl "uri_encode" URI))
+
+  (function FilenameToURI ((Filename String) (Encode Boolean)) String
+    (__rtl "uri_filename" Filename Encode))
+
+  (function IsAbsoluteURI ((UriReference String)) Boolean
+    (__rtl "uri_isabsolute" UriReference))
+
+)

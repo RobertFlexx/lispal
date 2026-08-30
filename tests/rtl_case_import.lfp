@@ -1,0 +1,8 @@
+(program RtlCaseImport
+  (uses sysutils mAtH sTrUtIlS)
+
+  (begin
+    (assert (= (SYSUTILS.IntToStr 99) "99"))
+    (assert (= (math.RoundTo 12.3456 -2) 12.35))
+    (assert (strutils.ContainsText "Lispal" "ISP"))
+    (writeln "rtl-case-import-ok")))

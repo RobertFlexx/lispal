@@ -1,0 +1,20 @@
+(unit Objects
+
+  (uses System)
+
+  (type
+    (PString Pointer))
+
+  (function NewStr ((S String)) PString
+    (if (= S "") nil (new S)))
+
+  (procedure DisposeStr ((P PString))
+    (if (Assigned P) (dispose P) nil))
+
+  (function LongDiv ((X Integer) (Y Integer)) Integer
+    (div X Y))
+
+  (function LongMul ((X Integer) (Y Integer)) Integer
+    (* X Y))
+
+)

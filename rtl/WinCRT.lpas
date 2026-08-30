@@ -1,0 +1,23 @@
+(unit WinCRT
+
+  (uses System Crt)
+
+  (procedure delay ((ms Integer))
+    (Crt.Delay ms))
+
+  (function keypressed () Boolean
+    (Crt.KeyPressed))
+
+  (procedure nosound ()
+    (Crt.NoSound))
+
+  (function readkey () String
+    (Crt.ReadKey))
+
+  (procedure sound ((Frequency Integer))
+    (Crt.Sound Frequency))
+
+  (procedure textmode ((Mode Integer))
+    (__rtl "crt_textmode" Mode))
+
+)

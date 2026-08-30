@@ -1,0 +1,80 @@
+(unit Strings
+
+  (uses System SysUtils)
+
+  (function StrLen ((S String)) Integer
+    (length S))
+
+  (function StrCopy ((S String)) String
+    (str S))
+
+  (function StrPas ((S String)) String
+    (str S))
+
+  (function StrNew ((S String)) String
+    (str S))
+
+  (function StrDispose ((S String)) String
+    (str S))
+
+  (function StrUpper ((S String)) String
+    (uppercase S))
+
+  (function StrLower ((S String)) String
+    (lowercase S))
+
+  (function StrComp ((A String) (B String)) Integer
+    (SysUtils.CompareStr A B))
+
+  (function StrIComp ((A String) (B String)) Integer
+    (SysUtils.CompareText A B))
+
+  (function StrPos ((A String) (B String)) Integer
+    (pos B A))
+
+  (function StrScan ((A String) (B String)) Integer
+    (pos B A))
+
+  (function StrRScan ((A String) (B String)) Integer
+    (__rtl "rpos" B A))
+
+  (function StrLComp ((A String) (B String) (N Integer)) Integer
+    (SysUtils.CompareStr (copy A 1 N) (copy B 1 N)))
+
+  (function StrLIComp ((A String) (B String) (N Integer)) Integer
+    (SysUtils.CompareText (copy A 1 N) (copy B 1 N)))
+
+  (function StrCat ((A String) (B String)) String
+    (concat A B))
+
+  (function StrLCat ((A String) (B String) (N Integer)) String
+    (copy (concat A B) 1 N))
+
+  (function StrPCopy ((A String)) String
+    A)
+
+  (function StrPLCopy ((A String) (N Integer)) String
+    (copy A 1 N))
+
+  (function StrLCopy ((A String) (N Integer)) String
+    (copy A 1 N))
+
+  (function StrMove ((A String)) String
+    A)
+
+  (function StrEnd ((A String)) Integer
+    (+ (length A) 1))
+
+  (function StrECopy ((A String)) String
+    A)
+
+  (function StrBufSize ((A String)) Integer
+    (+ (length A) 1))
+
+  (function StrAlloc ((Size Integer)) String
+    "")
+
+  (function StrNextChar ((S String) (Index Integer)) Integer
+    (+ Index 1))
+
+)

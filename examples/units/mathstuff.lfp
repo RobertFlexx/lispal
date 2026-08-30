@@ -1,0 +1,8 @@
+(unit mathstuff
+  (function triple ((x Integer)) Integer
+    (* x 3))
+
+  (function clamp ((x Integer) (lo Integer) (hi Integer)) Integer
+    (if (< x lo)
+        lo
+        (if (> x hi) hi x))))

@@ -1,0 +1,23 @@
+(program RtlGetOptsShort
+  (uses GetOpts)
+
+  (var
+    (C Char #\null))
+
+  (begin
+    (set! C (GetOpt "ab:c::"))
+    (assert (= C #\a))
+
+    (set! C (GetOpt "ab:c::"))
+    (assert (= C #\b))
+    (assert (= OptArg "value"))
+    (assert (= GetOpts.OptArg "value"))
+
+    (set! C (GetOpt "ab:c::"))
+    (assert (= C #\c))
+    (assert (= OptArg "optional"))
+    (assert (= GetOpts.OptArg "optional"))
+
+    (set! C (GetOpt "ab:c::"))
+    (assert (= C EndOfOptions))
+    (writeln "rtl-getopts-short-ok")))

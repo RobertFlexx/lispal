@@ -1,0 +1,47 @@
+(unit Unix
+
+  (uses System SysUtils DateUtils BaseUnix)
+
+  (function fpSystem ((Command String)) Integer
+    (__rtl "unix_system" Command))
+
+  (function FSearch ((Path String) (DirList String)) String
+    (__rtl "unix_fsearch" Path DirList))
+
+  (function GetHostName () String
+    (__rtl "unix_hostname"))
+
+  (function GetDomainName () String
+    (__rtl "unix_domainname"))
+
+  (function GetTimezoneFile () String
+    (__rtl "unix_timezonefile"))
+
+  (function LocalToEpoch ((DT TDateTime)) Integer
+    (__rtl "unix_localtoepoch" DT))
+
+  (function UniversalToEpoch ((DT TDateTime)) Integer
+    (__rtl "unix_universaltoepoch" DT))
+
+  (function EpochToLocal ((Epoch Integer)) TDateTime
+    (__rtl "unix_epochtolocal" Epoch))
+
+  (function EpochToUniversal ((Epoch Integer)) TDateTime
+    (__rtl "unix_epochtouniversal" Epoch))
+
+  (function fpfsync ((FD Integer)) Integer
+    (__rtl "unix_fsync" FD))
+
+  (function WaitProcess ((Pid Integer)) Integer
+    (__rtl "unix_waitprocess" Pid))
+
+  (function WIFSTOPPED ((Status Integer)) Boolean
+    (__rtl "unix_wifstopped" Status))
+
+  (function W_EXITCODE ((ReturnCode Integer) (Signal Integer)) Integer
+    (__rtl "unix_w_exitcode" ReturnCode Signal))
+
+  (function W_STOPCODE ((Signal Integer)) Integer
+    (__rtl "unix_w_stopcode" Signal))
+
+)
