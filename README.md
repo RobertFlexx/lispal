@@ -1,5 +1,8 @@
 # lispal
 
+> Pascal in parentheses. Pack it and go.
+------------------------------------------
+
 lispal is a small, embeddable pascal-like language written with lisp syntax.
 source files use `.lfp` or `.lpas`.
 
